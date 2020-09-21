@@ -7,4 +7,8 @@
     <string name="guessGameTitle">Arvaa missä timantti on</string>
     <string name="guessGameTotalTriesText">Sinä jouduit yrittämään näin monta kertaa, kunnes löysit timantin:</string>
     <string name="guessGameRefreshButton">uudelleen</string>
+
+    <string name="title_home">Koti</string>
+    <string name="title_dashboard">Raportointinäkymä</string>
+    <string name="title_notifications">Ilmoitukset</string>
 </resources>

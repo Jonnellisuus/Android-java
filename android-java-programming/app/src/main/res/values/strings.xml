@@ -9,7 +9,8 @@
     <string name="guessGameCurrentTries" translatable="false">0</string>
     <string name="guessGameTotalTriesText">"The total number of attempts it took you to find the diamond: "</string>
     <string name="guessGameRefreshButton">Restart</string>
-    <string name="title_activity_navigation">MainActivity</string>
+
+    <string name="title_activity_main2" translatable="false">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>

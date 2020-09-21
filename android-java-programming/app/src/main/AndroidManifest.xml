@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-        <activity android:name=".MainActivity" >
+        <activity
+            android:name=".MainActivity2"
+            android:label="@string/title_activity_main2" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,19 +20,13 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".MainActivity" >
+        </activity>
+        <activity
             android:name=".GuessGame"
             android:label="@string/guessGame"
             android:parentActivityName=".MainActivity" >
         </activity>
-
     </application>
 
 </manifest>
-
-
-
-    <!--
-         Lines 21 and 22 needs to be added so navigation to guess game works.
-         Line 24 tells what is the parent activity and in this case it will direct from
-         the guess game back to the starting screen.
-    -->
