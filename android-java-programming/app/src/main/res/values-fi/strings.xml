@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Hei maailma</string>
+    <string name="testButton">Klikkaa tästä</string>
+    <string name="appText">Hei</string>
+    <string name="guessGame">Arvauspeli</string>
+    <string name="guessGameTitle">Arvaa missä timantti on</string>
+    <string name="guessGameTotalTriesText">Sinä jouduit yrittämään näin monta kertaa, kunnes löysit timantin:</string>
+    <string name="guessGameRefreshButton">uudelleen</string>
+</resources>

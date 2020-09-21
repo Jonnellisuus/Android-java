@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/appBackground"
+    tools:context=".GuessGame">
+
+    <ImageView
+        android:id="@+id/firstDiamond"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="305dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/diamond" />
+
+    <ImageView
+        android:id="@+id/secondDiamond"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginTop="305dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/diamond" />
+
+    <ImageView
+        android:id="@+id/thirdDiamond"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="125dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/diamond" />
+
+    <ImageView
+        android:id="@+id/fourthDiamond"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginTop="125dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/diamond" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/guessGameFirstCard"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="280dp"
+        android:layout_marginEnd="3dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:stateListAnimator="@anim/guess_game_incorrect_answer"
+        app:cardBackgroundColor="#989"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.861"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/guessGameSecondCard"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="280dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:stateListAnimator="@anim/guess_game_incorrect_answer"
+        app:cardBackgroundColor="#989"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.13"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/guessGameThirdCard"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:stateListAnimator="@anim/guess_game_incorrect_answer"
+        app:cardBackgroundColor="#989"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.889"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/guessGameFourthCard"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="100dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:stateListAnimator="@anim/guess_game_incorrect_answer"
+        app:cardBackgroundColor="#989"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.13"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/guessGameTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/guessGameTitle"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/refreshGuessGame"
+        android:layout_width="120dp"
+        android:layout_height="72dp"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        android:layout_marginEnd="204dp"
+        android:layout_marginBottom="80dp"
+        android:text="@string/guessGameRefreshButton"
+        app:backgroundTint="@color/guessGameRestartButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/guessGameScoreText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="210dp"
+        android:layout_marginTop="515dp"
+        android:layout_marginBottom="80dp"
+        android:text="@string/guessGameScore"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.296" />
+
+    <TextView
+        android:id="@+id/guessGameCurrentTries"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="216dp"
+        android:text="@string/guessGameCurrentTries"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guessGameSecondCard" />
+
+    <TextView
+        android:id="@+id/guessGameTotalTriesText"
+        android:layout_width="237dp"
+        android:layout_height="76dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="500dp"
+        android:layout_marginBottom="80dp"
+        android:text="@string/guessGameTotalTriesText"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.855" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
