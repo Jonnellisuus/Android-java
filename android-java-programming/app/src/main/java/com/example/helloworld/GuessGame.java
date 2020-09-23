@@ -1,28 +1,20 @@
 package com.example.helloworld;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.nio.IntBuffer;
 import java.util.Random;
 
 public class GuessGame extends AppCompatActivity implements View.OnClickListener {
@@ -33,17 +25,12 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
     CardView fourthCard;
 
     Animation inCorrectChoice;
-    int randomNumber;
-    Button refreshButton;
-    // Intent refresh;
-
-    Intent intent;
-    // int highScore;
-    // private String best = "HighScore";
+    Button restartButton;
 
     TextView guessGameScore;
     TextView guessGameCurrentTries;
 
+    int randomNumber;
     int clickCount = 0;
 
     @Override
@@ -56,93 +43,24 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
         thirdCard = findViewById(R.id.guessGameThirdCard);
         fourthCard = findViewById(R.id.guessGameFourthCard);
 
-        refreshButton = findViewById(R.id.refreshGuessGame);
-        refreshButton.setOnClickListener(this);
+        firstCard.setOnClickListener(this);
+        secondCard.setOnClickListener(this);
+        thirdCard.setOnClickListener(this);
+        fourthCard.setOnClickListener(this);
+
+        restartButton = findViewById(R.id.restartGuessGame);
+        restartButton.setOnClickListener(this);
 
         guessGameScore = findViewById(R.id.guessGameScoreText);
         guessGameCurrentTries = findViewById(R.id.guessGameCurrentTries);
 
         inCorrectChoice = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.guess_game_incorrect_answer);
 
-        firstCard.setOnClickListener(this);
-        secondCard.setOnClickListener(this);
-        thirdCard.setOnClickListener(this);
-        fourthCard.setOnClickListener(this);
-
-        /*
-        intent = new Intent(this, GuessGame.class);
-        intent.putExtra(best, highScore);
-
-        Bundle extras = getIntent().getExtras();
-        if( extras == null) {
-            highScore = 0;
-        } else {
-            highScore = extras.getInt(best);
-            guessGameHighscore.setText(Integer.toString(highScore));
-            // guessGameHighscore.setText(String.valueOf(highScore));
-            // guessGameHighscore.setText(Integer.toString(highScore));
-        }
-
-         */
-
         /*
         This would be used to generate random number if onStart method was not used.
 
         randomNumber = generateRandomNumber();
          */
-
-        /*
-        final CardView firstCard = (CardView) findViewById(R.id.guessGameFirstCard);
-        firstCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Animation inCorrectChoice = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.guess_game_incorrect_answer);
-                firstCard.startAnimation(inCorrectChoice);
-            }
-        });
-
-        final CardView secondCard = (CardView) findViewById(R.id.guessGameSecondCard);
-        secondCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Animation inCorrectChoice = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.guess_game_incorrect_answer);
-                secondCard.startAnimation(inCorrectChoice);
-            }
-        });
-
-        final CardView thirdCard = (CardView) findViewById(R.id.guessGameThirdCard);
-        thirdCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Animation inCorrectChoice = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.guess_game_incorrect_answer);
-                thirdCard.startAnimation(inCorrectChoice);
-            }
-        });
-
-        final CardView fourthCard = (CardView) findViewById(R.id.guessGameFourthCard);
-        fourthCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Animation inCorrectChoice = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.guess_game_incorrect_answer);
-                fourthCard.startAnimation(inCorrectChoice);
-            }
-        });
-
-         */
-
-        /*
-        final CardView firstCardAnimation = findViewById(R.id.guessGameFirstCard);
-        firstCardAnimation.setOnClickListener(new View.OnClickListener() {
-           @Override
-            public void onClick(View view) {
-               YoYo.with(Techniques.FlipInX)
-                       .duration(1000)
-                       .playOn(firstCardAnimation);
-           }
-        });
-
-         */
-
     }
 
     @Override
@@ -156,7 +74,7 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
         return randomNumber.nextInt(4);
     }
 
-    public void writeFile() {
+    public void writeScoreToFile() {
         String textToSave = guessGameCurrentTries.getText().toString();
 
         try {
@@ -170,7 +88,7 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
         }
     }
 
-    public void readFile() {
+    public void readScoreFromFile() {
         try {
             FileInputStream fileInputStream = openFileInput("saved_score.txt");
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
@@ -196,17 +114,19 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
                 if (randomNumber == 0) {
                     firstCard.setVisibility(View.GONE);
                     guessGameScore.setVisibility(View.VISIBLE);
-                    clickCount=clickCount+1;
+
+                    clickCount = clickCount+1;
                     guessGameCurrentTries.setText(String.valueOf(clickCount));
-                    writeFile();
-                    readFile();
+
+                    writeScoreToFile();
+                    readScoreFromFile();
                 }
 
                 else {
                     firstCard.startAnimation(inCorrectChoice);
-                    clickCount=clickCount+1;
+                    clickCount = clickCount+1;
                     guessGameCurrentTries.setText(String.valueOf(clickCount));
-                    writeFile();
+                    writeScoreToFile();
                 }
                 break;
 
@@ -214,17 +134,19 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
                 if (randomNumber == 1) {
                     secondCard.setVisibility(View.GONE);
                     guessGameScore.setVisibility(View.VISIBLE);
-                    clickCount=clickCount+1;
+
+                    clickCount = clickCount+1;
                     guessGameCurrentTries.setText(String.valueOf(clickCount));
-                    writeFile();
-                    readFile();
+
+                    writeScoreToFile();
+                    readScoreFromFile();
                 }
 
                 else {
                     secondCard.startAnimation(inCorrectChoice);
-                    clickCount=clickCount+1;
+                    clickCount = clickCount+1;
                     guessGameCurrentTries.setText(String.valueOf(clickCount));
-                    writeFile();
+                    writeScoreToFile();
                 }
                 break;
 
@@ -232,17 +154,19 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
                 if (randomNumber == 2) {
                     thirdCard.setVisibility(View.GONE);
                     guessGameScore.setVisibility(View.VISIBLE);
-                    clickCount=clickCount+1;
+
+                    clickCount = clickCount+1;
                     guessGameCurrentTries.setText(String.valueOf(clickCount));
-                    writeFile();
-                    readFile();
+
+                    writeScoreToFile();
+                    readScoreFromFile();
                 }
 
                 else {
                     thirdCard.startAnimation(inCorrectChoice);
-                    clickCount=clickCount+1;
+                    clickCount = clickCount+1;
                     guessGameCurrentTries.setText(String.valueOf(clickCount));
-                    writeFile();
+                    writeScoreToFile();
                 }
                 break;
 
@@ -250,30 +174,25 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
                 if (randomNumber == 3) {
                     fourthCard.setVisibility(View.GONE);
                     guessGameScore.setVisibility(View.VISIBLE);
-                    clickCount=clickCount+1;
+
+                    clickCount = clickCount+1;
                     guessGameCurrentTries.setText(String.valueOf(clickCount));
-                    writeFile();
-                    readFile();
+
+                    writeScoreToFile();
+                    readScoreFromFile();
                 }
 
                 else {
                     fourthCard.startAnimation(inCorrectChoice);
-                    clickCount=clickCount+1;
+                    clickCount = clickCount+1;
                     guessGameCurrentTries.setText(String.valueOf(clickCount));
-                    writeFile();
+                    writeScoreToFile();
                 }
                 break;
 
-            case R.id.refreshGuessGame:
-                /*
-                refresh = new Intent(this, GuessGame.class);
-                startActivity(refresh);
-                 */
-
+            case R.id.restartGuessGame:
                 finish();
                 startActivity(getIntent());
-
-                //intent.putExtra(best, highScore);
                 break;
 
             default:

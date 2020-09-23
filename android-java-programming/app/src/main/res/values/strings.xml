@@ -2,15 +2,17 @@
     <string name="app_name">Hello World</string>
     <string name="testButton">Click here</string>
     <string name="appText">Hello</string>
-
     <string name="guessGame">Guess game</string>
+
+    <string name="buttonToFindCat">Find a cat</string>
+
     <string name="guessGameTitle">Guess where the diamond is</string>
     <string name="guessGameScore" translatable="false">0</string>
     <string name="guessGameCurrentTries" translatable="false">0</string>
     <string name="guessGameTotalTriesText">"The total number of attempts it took you to find the diamond: "</string>
     <string name="guessGameRefreshButton">Restart</string>
 
-    <string name="title_activity_main2" translatable="false">MainActivity</string>
+    <string name="title_activity_main" translatable="false">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
