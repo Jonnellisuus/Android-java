@@ -14,4 +14,10 @@
     <string name="title_home">Koti</string>
     <string name="title_dashboard">Raportointinäkymä</string>
     <string name="title_notifications">Ilmoitukset</string>
+
+    <!--
+    <string name="text_location_permission">Sijainti</string>
+    <string name="title_location_permission">Salli sovelluksen käyttää sijaintiasi</string>
+    -->
+
 </resources>

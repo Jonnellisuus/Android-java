@@ -16,4 +16,11 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <!--
+    <string name="title_location_permission">Location</string>
+    <string name="text_location_permission">Allow app to use your location</string>
+    <string name="locationPermissionOK" translatable="false">OK</string>
+    -->
+
 </resources>
