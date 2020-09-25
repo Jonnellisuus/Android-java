@@ -17,6 +17,14 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
 
+    <string name="locationTitle">Your location</string>
+    <string name="locationButton">Show location on the map</string>
+
+    <string name="location" translatable="false"> </string>
+
+    <string name="airplaneModeOn">Airplane mode on</string>
+    <string name="airplaneModeOff">Airplane mode off</string>
+
     <!--
     <string name="title_location_permission">Location</string>
     <string name="text_location_permission">Allow app to use your location</string>

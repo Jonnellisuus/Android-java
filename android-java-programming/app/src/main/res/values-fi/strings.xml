@@ -15,6 +15,12 @@
     <string name="title_dashboard">Raportointinäkymä</string>
     <string name="title_notifications">Ilmoitukset</string>
 
+    <string name="locationTitle">Sijaintisi</string>
+    <string name="locationButton">Näytä sijainti kartalla</string>
+
+    <string name="airplaneModeOn">Lentokonetila päällä</string>
+    <string name="airplaneModeOff">Lentokonetila pois</string>
+
     <!--
     <string name="text_location_permission">Sijainti</string>
     <string name="title_location_permission">Salli sovelluksen käyttää sijaintiasi</string>

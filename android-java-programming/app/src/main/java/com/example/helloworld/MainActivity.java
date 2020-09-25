@@ -1,12 +1,16 @@
 package com.example.helloworld;
 
 import android.Manifest;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -31,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int LOCATION_PERMISSION_CODE = 100;
 
+    BroadcastReceiver broadcastReceiver;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -43,6 +49,11 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
+        broadcastReceiver = new ApmReceiver();
+        IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        intentFilter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
+        this.registerReceiver(broadcastReceiver, intentFilter);
 
         /*
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -186,6 +197,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
      */
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        unregisterReceiver(broadcastReceiver);
+    }
 
     @Override
     public void onStart() {
