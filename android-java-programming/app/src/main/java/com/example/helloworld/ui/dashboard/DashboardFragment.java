@@ -28,7 +28,6 @@ public class DashboardFragment extends Fragment implements LocationListener {
     TextInputEditText locationLatitude;
     TextInputEditText locationLongitude;
 
-
     LocationManager locationManager;
 
     private static final int MY_PERMISSION_REQUEST_FINE_LOCATION = 111;
@@ -85,15 +84,11 @@ public class DashboardFragment extends Fragment implements LocationListener {
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 0, this);
         Location lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
-        /*
         if (lastLocation != null) {
             locationLatitude.setText(Double.toString(lastLocation.getLatitude()));
             locationLongitude.setText(Double.toString(lastLocation.getLongitude()));
             // locationAddress.setText(getAddress(lastLocation));
         }
-
-         */
-
     }
 
     @Override
