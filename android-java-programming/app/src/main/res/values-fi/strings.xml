@@ -21,6 +21,8 @@
     <string name="airplaneModeOn">Lentokonetila päällä</string>
     <string name="airplaneModeOff">Lentokonetila pois</string>
 
+    <string name="timerFinishText">Aika loppui</string>
+
     <!--
     <string name="text_location_permission">Sijainti</string>
     <string name="title_location_permission">Salli sovelluksen käyttää sijaintiasi</string>

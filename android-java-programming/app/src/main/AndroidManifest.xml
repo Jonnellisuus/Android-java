@@ -14,13 +14,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"> <!-- In case map does not open -->
         <receiver
             android:name=".ApmReceiver"
             android:enabled="true"
             android:exported="true">
         </receiver>
-        <!-- In case map does not open -->
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,7 +30,8 @@
         <activity
             android:name=".GuessGame"
             android:label="@string/guessGame"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity">
+        </activity>
     </application>
 
 </manifest>

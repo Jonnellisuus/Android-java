@@ -25,6 +25,13 @@
     <string name="airplaneModeOn">Airplane mode on</string>
     <string name="airplaneModeOff">Airplane mode off</string>
 
+    <string name="timerStartButton" translatable="false">Start</string>
+    <string name="timerPauseButton" translatable="false">Pause</string>
+    <string name="timerPlayButton" translatable="false">Play</string>
+    <string name="timerResetButton" translatable="false">Reset</string>
+    <string name="timerResetedTime" translatable="false"> </string>
+    <string name="timerFinishText">Time is out</string>
+
     <!--
     <string name="title_location_permission">Location</string>
     <string name="text_location_permission">Allow app to use your location</string>

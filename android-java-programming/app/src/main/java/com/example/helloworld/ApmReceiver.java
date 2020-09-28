@@ -13,6 +13,7 @@ public class ApmReceiver extends BroadcastReceiver {
         // TODO: This method is called when the BroadcastReceiver is receiving
         // an Intent broadcast.
 
+        /*
         if (isAirplaneModeOn(context)) {
             Toast.makeText(context, (R.string.airplaneModeOn), Toast.LENGTH_SHORT).show();
         } else {
@@ -21,5 +22,7 @@ public class ApmReceiver extends BroadcastReceiver {
     }
     public static boolean isAirplaneModeOn(Context context) {
         return Settings.System.getInt(context.getContentResolver(), Settings.System.AIRPLANE_MODE_ON,0) != 0;
+
+         */
     }
 }

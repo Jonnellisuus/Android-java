@@ -50,10 +50,13 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
+        /*
         broadcastReceiver = new ApmReceiver();
         IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         intentFilter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
         this.registerReceiver(broadcastReceiver, intentFilter);
+
+         */
 
         /*
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -198,11 +201,14 @@ public class MainActivity extends AppCompatActivity {
 
      */
 
+    /*
     @Override
     public void onStop() {
         super.onStop();
         unregisterReceiver(broadcastReceiver);
     }
+
+     */
 
     @Override
     public void onStart() {
