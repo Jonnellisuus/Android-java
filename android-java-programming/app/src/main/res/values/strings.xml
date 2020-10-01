@@ -19,6 +19,9 @@
 
     <string name="locationTitle">Your location</string>
     <string name="locationButton">Show location on the map</string>
+    <string name="locationLatitudeHint">Latitude</string>
+    <string name="locationLongitudeHint">Longitude</string>
+    <string name="locationAddressHint">Address</string>
 
     <string name="location" translatable="false"> </string>
 
@@ -29,13 +32,7 @@
     <string name="timerPauseButton" translatable="false">Pause</string>
     <string name="timerPlayButton" translatable="false">Play</string>
     <string name="timerResetButton" translatable="false">Reset</string>
-    <string name="timerResetedTime" translatable="false"> </string>
+    <string name="timerResetTime" translatable="false"> </string>
     <string name="timerFinishText">Time is out</string>
-
-    <!--
-    <string name="title_location_permission">Location</string>
-    <string name="text_location_permission">Allow app to use your location</string>
-    <string name="locationPermissionOK" translatable="false">OK</string>
-    -->
 
 </resources>

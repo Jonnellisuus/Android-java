@@ -2,15 +2,22 @@ package com.example.helloworld.ui.dashboard;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,17 +28,31 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.helloworld.R;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+
 public class DashboardFragment extends Fragment implements LocationListener {
 
     private DashboardViewModel dashboardViewModel;
 
     TextInputEditText locationLatitude;
     TextInputEditText locationLongitude;
+    TextInputEditText locationAddress;
+
+    Button showLocationOnMap;
+
+    double latitude;
+    double longitude;
 
     LocationManager locationManager;
+    Location lastLocation;
+    Geocoder geocoder;
+    List<Address> addressList;
 
     private static final int MY_PERMISSION_REQUEST_FINE_LOCATION = 111;
     private static final String TAG = "DashboardFragment";
+    String currentLocation = "";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -41,28 +62,28 @@ public class DashboardFragment extends Fragment implements LocationListener {
 
         locationLatitude = (TextInputEditText) root.findViewById(R.id.locationLatitude);
         locationLongitude = (TextInputEditText) root.findViewById(R.id.locationLongitude);
+        locationAddress = (TextInputEditText) root.findViewById(R.id.locationAddress);
 
         locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
         startLocationUpdate();
+        // getAddress();
 
-        // locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 0, this);
-        // Location lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
-        /*
-        final TextView textView = root.findViewById(R.id.text_dashboard);
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        showLocationOnMap = (Button) root.findViewById(R.id.showLocationButton);
+        showLocationOnMap.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
+            public void onClick(View view) {
+                if (lastLocation != null) {
+                    String uri = String.format(Locale.ENGLISH, "http://maps.google.com/maps?q=loc:%f,%f", latitude, longitude);
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                    startActivity(intent);
+                }
             }
         });
-
-         */
         return root;
     }
 
-    private void startLocationUpdate() {
+    public void startLocationUpdate() {
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(getContext(),
@@ -82,12 +103,12 @@ public class DashboardFragment extends Fragment implements LocationListener {
             return;
         }
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 0, this);
-        Location lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
         if (lastLocation != null) {
             locationLatitude.setText(Double.toString(lastLocation.getLatitude()));
             locationLongitude.setText(Double.toString(lastLocation.getLongitude()));
-            // locationAddress.setText(getAddress(lastLocation));
+            locationAddress.setText(getAddress(lastLocation));
         }
     }
 
@@ -110,6 +131,32 @@ public class DashboardFragment extends Fragment implements LocationListener {
 
     @Override
     public void onLocationChanged(@NonNull Location location) {
+        lastLocation = location;
+       // locationAddress.setText(getAddress(lastLocation));
+       // locationAddress.setText(getAddress(location));
+    }
 
+    public String getAddress(Location location) {
+        if (lastLocation != null) {
+            latitude = location.getLatitude();
+            longitude = location.getLongitude();
+
+            geocoder = new Geocoder(getContext(), Locale.getDefault());
+            try {
+                addressList = geocoder.getFromLocation(
+                        latitude, longitude, 1);
+                if (addressList != null && addressList.size() > 0) {
+                    Address address = addressList.get(0);
+
+                    currentLocation = address.getAddressLine(0);
+
+                    Log.e(TAG, address.getAddressLine(0));
+                    // locationAddress.setText(address.getAddressLine(0));
+                }
+            } catch (IOException e) {
+                Log.e(TAG, "Unable connect to Geocoder", e);
+            }
+        }
+        return currentLocation;
     }
 }

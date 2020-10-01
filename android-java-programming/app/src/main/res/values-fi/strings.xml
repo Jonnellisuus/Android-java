@@ -17,15 +17,13 @@
 
     <string name="locationTitle">Sijaintisi</string>
     <string name="locationButton">Näytä sijainti kartalla</string>
+    <string name="locationLatitudeHint">Leveysaste</string>
+    <string name="locationLongitudeHint">Pituusaste</string>
+    <string name="locationAddressHint">Osoite</string>
 
     <string name="airplaneModeOn">Lentokonetila päällä</string>
     <string name="airplaneModeOff">Lentokonetila pois</string>
 
     <string name="timerFinishText">Aika loppui</string>
-
-    <!--
-    <string name="text_location_permission">Sijainti</string>
-    <string name="title_location_permission">Salli sovelluksen käyttää sijaintiasi</string>
-    -->
 
 </resources>

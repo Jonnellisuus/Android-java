@@ -2,24 +2,16 @@ package com.example.helloworld;
 
 import android.Manifest;
 import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.location.Criteria;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -29,9 +21,6 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 public class MainActivity extends AppCompatActivity {
-
-    // LocationManager locationManager;
-    // String provider;
 
     private static final int LOCATION_PERMISSION_CODE = 100;
 
@@ -56,15 +45,7 @@ public class MainActivity extends AppCompatActivity {
         this.registerReceiver(broadcastReceiver, intentFilter);
 
         /*
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
-        provider = locationManager.getBestProvider(new Criteria(), false);
-
-        checkLocationPermission();
-
-         */
-
-        /* This code worked.
+        // One way to request permission to use location.
         if (ContextCompat.checkSelfPermission(MainActivity.this,
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
             if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this,
@@ -76,108 +57,11 @@ public class MainActivity extends AppCompatActivity {
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
             }
         }
-
          */
     }
 
-    /* This code did not work.
-    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
-
-    public boolean checkLocationPermission() {
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.ACCESS_FINE_LOCATION)) {
-
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-                new AlertDialog.Builder(this)
-                        .setTitle(R.string.title_location_permission)
-                        .setMessage(R.string.text_location_permission)
-                        .setPositiveButton(R.string.locationPermissionOK, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                //Prompt the user once explanation has been shown
-                                ActivityCompat.requestPermissions(MainActivity.this,
-                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                                        MY_PERMISSIONS_REQUEST_LOCATION);
-                            }
-                        })
-                        .create()
-                        .show();
-
-
-            } else {
-                // No explanation needed, we can request the permission.
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        MY_PERMISSIONS_REQUEST_LOCATION);
-            }
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_LOCATION: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                    // permission was granted, yay! Do the
-                    // location-related task you need to do.
-                    if (ContextCompat.checkSelfPermission(this,
-                            Manifest.permission.ACCESS_FINE_LOCATION)
-                            == PackageManager.PERMISSION_GRANTED) {
-
-                        //Request location updates:
-                        locationManager.requestLocationUpdates(provider, 400, 1, (LocationListener) this);
-                    }
-
-                } else {
-
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
-
-                }
-            }
-
-        }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-
-            locationManager.requestLocationUpdates(provider, 400, 1, (LocationListener) this);
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-
-            locationManager.removeUpdates((LocationListener) this);
-        }
-    }
-
-     */
-
-    /* This code worked.
+    /*
+    // One way to request permission to use location.
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions,
                                            int[] grantResults){
@@ -195,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
      */
 
     @Override
@@ -231,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /* When the code below is being executed when the user accepts or declines the permission.
+    /* The code below is being executed when the user accepts or declines the permission.
        Request Code is used to check which permission called this function.*/
     @Override
     public void onRequestPermissionsResult(int requestCode,
