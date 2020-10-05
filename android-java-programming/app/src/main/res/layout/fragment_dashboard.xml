@@ -20,6 +20,7 @@
             android:id="@+id/locationLatitude"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
             android:hint="@string/locationLatitudeHint" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -38,6 +39,7 @@
             android:id="@+id/locationLongitude"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
             android:hint="@string/locationLongitudeHint" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -56,6 +58,7 @@
             android:id="@+id/locationAddress"
             android:layout_width="match_parent"
             android:layout_height="100dp"
+            android:textColor="@android:color/black"
             android:hint="@string/locationAddressHint"/>
 
     </com.google.android.material.textfield.TextInputLayout>
