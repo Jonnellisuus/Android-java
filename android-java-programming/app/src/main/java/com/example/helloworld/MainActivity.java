@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int LOCATION_PERMISSION_CODE = 100;
 
     BroadcastReceiver broadcastReceiver;
+    IntentFilter intentFilter;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,11 +39,6 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-
-        broadcastReceiver = new ApmReceiver();
-        IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-        intentFilter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
-        this.registerReceiver(broadcastReceiver, intentFilter);
 
         /*
         // One way to request permission to use location.
@@ -93,6 +89,10 @@ public class MainActivity extends AppCompatActivity {
         checkPermission(Manifest.permission.ACCESS_FINE_LOCATION,
                 LOCATION_PERMISSION_CODE);
 
+        broadcastReceiver = new ApmReceiver();
+        intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        intentFilter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
+        this.registerReceiver(broadcastReceiver, intentFilter);
     }
 
     // Function to check and request permission.
