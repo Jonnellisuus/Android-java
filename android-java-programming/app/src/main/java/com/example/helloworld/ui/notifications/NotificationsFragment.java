@@ -21,6 +21,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -92,15 +93,6 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
 
         defaultRingtone = RingtoneManager.getRingtone(getActivity(), Settings.System.DEFAULT_RINGTONE_URI);
 
-        /*
-        final TextView textView = root.findViewById(R.id.text_notifications);
-        notificationsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-         */
         return root;
     }
 
@@ -116,6 +108,7 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
 
                     countDownTimer = new CountDownTimer(1000, 1000) {
                         public void onTick(long millisUntilFinished) {
+                            startTimerButton.setEnabled(false);
                             remainingTime.setText(String.valueOf(getTime));
                             getTime--;
                         }
@@ -134,6 +127,7 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
 
                     countDownTimer = new CountDownTimer(2000, 1000) {
                         public void onTick(long millisUntilFinished) {
+                            startTimerButton.setEnabled(false);
                             remainingTime.setText(String.valueOf(getTime));
                             getTime--;
                         }
@@ -152,6 +146,7 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
 
                     countDownTimer = new CountDownTimer(3000, 1000) {
                         public void onTick(long millisUntilFinished) {
+                            startTimerButton.setEnabled(false);
                             remainingTime.setText(String.valueOf(getTime));
                             getTime--;
                         }
@@ -170,6 +165,7 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
 
                     countDownTimer = new CountDownTimer(4000, 1000) {
                         public void onTick(long millisUntilFinished) {
+                            startTimerButton.setEnabled(false);
                             remainingTime.setText(String.valueOf(getTime));
                             getTime--;
                         }
@@ -188,6 +184,7 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
 
                     countDownTimer = new CountDownTimer(5000, 1000) {
                         public void onTick(long millisUntilFinished) {
+                            startTimerButton.setEnabled(false);
                             remainingTime.setText(String.valueOf(getTime));
                             getTime--;
                         }
@@ -206,6 +203,7 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
 
                     countDownTimer = new CountDownTimer(6000, 1000) {
                         public void onTick(long millisUntilFinished) {
+                            startTimerButton.setEnabled(false);
                             remainingTime.setText(String.valueOf(getTime));
                             getTime--;
                         }
@@ -224,6 +222,7 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
 
                     countDownTimer = new CountDownTimer(7000, 1000) {
                         public void onTick(long millisUntilFinished) {
+                            startTimerButton.setEnabled(false);
                             remainingTime.setText(String.valueOf(getTime));
                             getTime--;
                         }
@@ -242,6 +241,7 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
 
                     countDownTimer = new CountDownTimer(8000, 1000) {
                         public void onTick(long millisUntilFinished) {
+                            startTimerButton.setEnabled(false);
                             remainingTime.setText(String.valueOf(getTime));
                             getTime--;
                         }
@@ -260,6 +260,7 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
 
                     countDownTimer = new CountDownTimer(9000, 1000) {
                         public void onTick(long millisUntilFinished) {
+                            startTimerButton.setEnabled(false);
                             remainingTime.setText(String.valueOf(getTime));
                             getTime--;
                         }
@@ -278,6 +279,7 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
 
                     countDownTimer = new CountDownTimer(10000, 1000) {
                         public void onTick(long millisUntilFinished) {
+                            startTimerButton.setEnabled(false);
                             remainingTime.setText(String.valueOf(getTime));
                             getTime--;
                         }
@@ -297,21 +299,10 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
                 break;
 
             case R.id.timerRestartButton:
-                /*
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                if (Build.VERSION.SDK_INT >= 26) {
-                    ft.setReorderingAllowed(false);
-                }
-                ft.detach(this).attach(this).commit();
-
-                 */
-
                 defaultRingtone.stop();
-                getFragmentManager().beginTransaction().detach(this).attach(this).commit();
-
-                // remainingTime.setText(R.string.timerResetedTime);
-                // timerFinishText.setVisibility(View.INVISIBLE);
-
+                countDownTimer.cancel();
+                getTime = 0;
+                getParentFragmentManager().beginTransaction().detach(this).attach(this).commit();
                 break;
         }
     }
