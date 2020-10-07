@@ -13,6 +13,7 @@
         android:layout_height="100dp"
         android:layout_marginStart="250dp"
         android:layout_marginTop="305dp"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/diamond" />
@@ -23,6 +24,7 @@
         android:layout_height="100dp"
         android:layout_marginStart="65dp"
         android:layout_marginTop="305dp"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/diamond" />
@@ -33,6 +35,7 @@
         android:layout_height="100dp"
         android:layout_marginStart="250dp"
         android:layout_marginTop="125dp"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/diamond" />
@@ -43,6 +46,7 @@
         android:layout_height="100dp"
         android:layout_marginStart="65dp"
         android:layout_marginTop="125dp"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/diamond" />

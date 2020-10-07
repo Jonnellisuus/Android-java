@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +31,11 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
     TextView guessGameScore;
     TextView guessGameCurrentTries;
 
+    ImageView firstDiamondImage;
+    ImageView secondDiamondImage;
+    ImageView thirdDiamondImage;
+    ImageView fourthDiamondImage;
+
     int randomNumber;
     int clickCount = 0;
 
@@ -47,6 +53,11 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
         secondCard.setOnClickListener(this);
         thirdCard.setOnClickListener(this);
         fourthCard.setOnClickListener(this);
+
+        firstDiamondImage = findViewById(R.id.firstDiamond);
+        secondDiamondImage = findViewById(R.id.secondDiamond);
+        thirdDiamondImage = findViewById(R.id.thirdDiamond);
+        fourthDiamondImage = findViewById(R.id.fourthDiamond);
 
         restartButton = findViewById(R.id.restartGuessGame);
         restartButton.setOnClickListener(this);
@@ -113,6 +124,7 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
             case R.id.guessGameFirstCard:
                 if (randomNumber == 0) {
                     firstCard.setVisibility(View.GONE);
+                    firstDiamondImage.setVisibility(View.VISIBLE);
                     guessGameScore.setVisibility(View.VISIBLE);
 
                     clickCount = clickCount+1;
@@ -133,6 +145,7 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
             case R.id.guessGameSecondCard:
                 if (randomNumber == 1) {
                     secondCard.setVisibility(View.GONE);
+                    secondDiamondImage.setVisibility(View.VISIBLE);
                     guessGameScore.setVisibility(View.VISIBLE);
 
                     clickCount = clickCount+1;
@@ -153,6 +166,7 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
             case R.id.guessGameThirdCard:
                 if (randomNumber == 2) {
                     thirdCard.setVisibility(View.GONE);
+                    thirdDiamondImage.setVisibility(View.VISIBLE);
                     guessGameScore.setVisibility(View.VISIBLE);
 
                     clickCount = clickCount+1;
@@ -173,6 +187,7 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
             case R.id.guessGameFourthCard:
                 if (randomNumber == 3) {
                     fourthCard.setVisibility(View.GONE);
+                    fourthDiamondImage.setVisibility(View.VISIBLE);
                     guessGameScore.setVisibility(View.VISIBLE);
 
                     clickCount = clickCount+1;
