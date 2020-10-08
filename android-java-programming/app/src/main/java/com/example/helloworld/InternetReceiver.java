@@ -18,7 +18,7 @@ public class InternetReceiver extends BroadcastReceiver {
         NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
         if (activeNetwork == null) {
             // not connected to the internet
-            Toast.makeText(context, (R.string.noInternetConnection), Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, (R.string.noInternetConnection), Toast.LENGTH_LONG).show();
         }
         else {
             Toast.makeText(context, (R.string.internetConnected), Toast.LENGTH_SHORT).show();
