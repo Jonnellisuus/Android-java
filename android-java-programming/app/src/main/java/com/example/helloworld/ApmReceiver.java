@@ -19,7 +19,7 @@ public class ApmReceiver extends BroadcastReceiver {
             Toast.makeText(context, (R.string.airplaneModeOff), Toast.LENGTH_SHORT).show();
         }
     }
-    public static boolean isAirplaneModeOn(Context context) {
+    private boolean isAirplaneModeOn(Context context) {
         return Settings.System.getInt(context.getContentResolver(), Settings.Global.AIRPLANE_MODE_ON, 0) != 0;
     }
 }
