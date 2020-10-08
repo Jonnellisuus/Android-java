@@ -1,14 +1,18 @@
 package com.example.helloworld.ui.dashboard;
 
 import android.Manifest;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -25,12 +29,15 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.helloworld.ApmReceiver;
+import com.example.helloworld.InternetReceiver;
 import com.example.helloworld.R;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class DashboardFragment extends Fragment implements LocationListener {
 
@@ -51,6 +58,8 @@ public class DashboardFragment extends Fragment implements LocationListener {
     Geocoder geocoder;
     List<Address> addressList;
 
+    private BroadcastReceiver internetReceiver = null;
+
     private static final int MY_PERMISSION_REQUEST_FINE_LOCATION = 111;
     private static final String TAG = "DashboardFragment";
     String currentLocation = "";
@@ -60,6 +69,8 @@ public class DashboardFragment extends Fragment implements LocationListener {
         dashboardViewModel =
                 new ViewModelProvider(this).get(DashboardViewModel.class);
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
+
+        internetReceiver = new InternetReceiver();
 
         locationLatitude = root.findViewById(R.id.locationLatitude);
         locationLatitude.setEnabled(false);
@@ -73,6 +84,7 @@ public class DashboardFragment extends Fragment implements LocationListener {
         locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
         startLocationUpdate();
+        broadcastIntent();
 
         showLocationOnMap = root.findViewById(R.id.showLocationButton);
         showLocationOnMap.setOnClickListener(new View.OnClickListener() {
@@ -107,6 +119,16 @@ public class DashboardFragment extends Fragment implements LocationListener {
     public void onStop() {
         super.onStop();
         locationManager.removeUpdates(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        this.requireActivity().unregisterReceiver(internetReceiver);
+    }
+
+    public void broadcastIntent() {
+        this.requireActivity().registerReceiver(internetReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
     }
 
     public void startLocationUpdate() {
