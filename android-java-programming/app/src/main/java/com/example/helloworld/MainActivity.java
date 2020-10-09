@@ -90,8 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 LOCATION_PERMISSION_CODE);
 
         broadcastReceiver = new ApmReceiver();
-        intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-        intentFilter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
+        intentFilter = new IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED);
         this.registerReceiver(broadcastReceiver, intentFilter);
     }
 
