@@ -1,10 +1,7 @@
 package com.example.helloworld.ui.notifications;
 
-import android.content.Intent;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.provider.Settings;
@@ -18,21 +15,12 @@ import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.TextClock;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
-import com.example.helloworld.GuessGame;
-import com.example.helloworld.MainActivity;
 import com.example.helloworld.R;
-
-import java.util.Locale;
-import java.util.Objects;
 
 public class NotificationsFragment extends Fragment implements View.OnClickListener {
 
@@ -51,6 +39,12 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
     TextView timerFinishText;
 
     int getTime;
+    int getTimeRemain;
+    int timeLeft;
+    int pickedSecond;
+    int formattedPickedSecond;
+    boolean isTimerRunning;
+
     CountDownTimer countDownTimer;
     Animation timerFinishAnimation;
     Ringtone defaultRingtone;
@@ -100,191 +94,58 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.timerStartButton:
-                int secondPicker = pickedNumber.getValue();
+                pickedSecond = pickedNumber.getValue();
+                formattedPickedSecond = pickedSecond + 1;
+                Log.e("What is picked time?", String.valueOf(formattedPickedSecond));
 
-                if (secondPicker == 0) {
-                    Log.e("picker value", "You selected 1");
-                    getTime = getTime + 1;
+                countDownTimer = new CountDownTimer(formattedPickedSecond * 1000, 1000) {
+                    public void onTick(long millisUntilFinished) {
+                        startTimerButton.setEnabled(false);
+                        remainingTime.setText(String.valueOf(formattedPickedSecond));
+                        formattedPickedSecond--;
+                    }
 
-                    countDownTimer = new CountDownTimer(1000, 1000) {
+                    public void onFinish() {
+                        isTimerRunning = false;
+                        remainingTime.setVisibility(View.INVISIBLE);
+                        timerFinishText.setVisibility(View.VISIBLE);
+                        timerFinishText.startAnimation(timerFinishAnimation);
+                        defaultRingtone.play();
+                    }
+                }.start();
+                isTimerRunning = true;
+                break;
+
+            case R.id.timerPauseButton:
+                if (isTimerRunning == true) {
+                    isTimerRunning = false;
+                    countDownTimer.cancel();
+                    pauseTimerButton.setText(R.string.timerPlayButton);
+
+                    Log.e("Is timer paused or not?", "The time is not running anymore.");
+                    Log.e("What is value?", String.valueOf(isTimerRunning));
+                }
+                else {
+                    isTimerRunning = true;
+                    pauseTimerButton.setText(R.string.timerPauseButton);
+                    pauseTimerButton.setEnabled(false);
+
+                    Log.e("Is timer paused or not?", "The timer is running again.");
+                    Log.e("What is value?", String.valueOf(isTimerRunning));
+
+                    timeLeft = Integer.parseInt(String.valueOf(remainingTime.getText()));
+                    Log.e("What is remaining time?", String.valueOf(Integer.valueOf(timeLeft)));
+
+                    getTimeRemain = getTimeRemain + timeLeft;
+                    countDownTimer = new CountDownTimer(timeLeft * 1000, 1000) {
                         public void onTick(long millisUntilFinished) {
                             startTimerButton.setEnabled(false);
-                            remainingTime.setText(String.valueOf(getTime));
-                            getTime--;
+                            remainingTime.setText(String.valueOf(getTimeRemain));
+                            getTimeRemain--;
                         }
 
                         public void onFinish() {
-                            remainingTime.setVisibility(View.INVISIBLE);
-                            timerFinishText.setVisibility(View.VISIBLE);
-                            timerFinishText.startAnimation(timerFinishAnimation);
-                            defaultRingtone.play();
-                        }
-                    }.start();
-
-                } else if (secondPicker == 1) {
-                    Log.e("picker value", "You selected 2");
-                    getTime = getTime + 2;
-
-                    countDownTimer = new CountDownTimer(2000, 1000) {
-                        public void onTick(long millisUntilFinished) {
-                            startTimerButton.setEnabled(false);
-                            remainingTime.setText(String.valueOf(getTime));
-                            getTime--;
-                        }
-
-                        public void onFinish() {
-                            remainingTime.setVisibility(View.INVISIBLE);
-                            timerFinishText.setVisibility(View.VISIBLE);
-                            timerFinishText.startAnimation(timerFinishAnimation);
-                            defaultRingtone.play();
-                        }
-                    }.start();
-
-                } else if (secondPicker == 2) {
-                    Log.e("picker value", "You selected 3");
-                    getTime = getTime + 3;
-
-                    countDownTimer = new CountDownTimer(3000, 1000) {
-                        public void onTick(long millisUntilFinished) {
-                            startTimerButton.setEnabled(false);
-                            remainingTime.setText(String.valueOf(getTime));
-                            getTime--;
-                        }
-
-                        public void onFinish() {
-                            remainingTime.setVisibility(View.INVISIBLE);
-                            timerFinishText.setVisibility(View.VISIBLE);
-                            timerFinishText.startAnimation(timerFinishAnimation);
-                            defaultRingtone.play();
-                        }
-                    }.start();
-
-                } else if (secondPicker == 3) {
-                    Log.e("picker value", "You selected 4");
-                    getTime = getTime + 4;
-
-                    countDownTimer = new CountDownTimer(4000, 1000) {
-                        public void onTick(long millisUntilFinished) {
-                            startTimerButton.setEnabled(false);
-                            remainingTime.setText(String.valueOf(getTime));
-                            getTime--;
-                        }
-
-                        public void onFinish() {
-                            remainingTime.setVisibility(View.INVISIBLE);
-                            timerFinishText.setVisibility(View.VISIBLE);
-                            timerFinishText.startAnimation(timerFinishAnimation);
-                            defaultRingtone.play();
-                        }
-                    }.start();
-
-                } else if (secondPicker == 4) {
-                    Log.e("picker value", "You selected 5");
-                    getTime = getTime + 5;
-
-                    countDownTimer = new CountDownTimer(5000, 1000) {
-                        public void onTick(long millisUntilFinished) {
-                            startTimerButton.setEnabled(false);
-                            remainingTime.setText(String.valueOf(getTime));
-                            getTime--;
-                        }
-
-                        public void onFinish() {
-                            remainingTime.setVisibility(View.INVISIBLE);
-                            timerFinishText.setVisibility(View.VISIBLE);
-                            timerFinishText.startAnimation(timerFinishAnimation);
-                            defaultRingtone.play();
-                        }
-                    }.start();
-
-                } else if (secondPicker == 5) {
-                    Log.e("picker value", "You selected 6");
-                    getTime = getTime + 6;
-
-                    countDownTimer = new CountDownTimer(6000, 1000) {
-                        public void onTick(long millisUntilFinished) {
-                            startTimerButton.setEnabled(false);
-                            remainingTime.setText(String.valueOf(getTime));
-                            getTime--;
-                        }
-
-                        public void onFinish() {
-                            remainingTime.setVisibility(View.INVISIBLE);
-                            timerFinishText.setVisibility(View.VISIBLE);
-                            timerFinishText.startAnimation(timerFinishAnimation);
-                            defaultRingtone.play();
-                        }
-                    }.start();
-
-                } else if (secondPicker == 6) {
-                    Log.e("picker value", "You selected 7");
-                    getTime = getTime + 7;
-
-                    countDownTimer = new CountDownTimer(7000, 1000) {
-                        public void onTick(long millisUntilFinished) {
-                            startTimerButton.setEnabled(false);
-                            remainingTime.setText(String.valueOf(getTime));
-                            getTime--;
-                        }
-
-                        public void onFinish() {
-                            remainingTime.setVisibility(View.INVISIBLE);
-                            timerFinishText.setVisibility(View.VISIBLE);
-                            timerFinishText.startAnimation(timerFinishAnimation);
-                            defaultRingtone.play();
-                        }
-                    }.start();
-
-                } else if (secondPicker == 7) {
-                    Log.e("picker value", "You selected 8");
-                    getTime = getTime + 8;
-
-                    countDownTimer = new CountDownTimer(8000, 1000) {
-                        public void onTick(long millisUntilFinished) {
-                            startTimerButton.setEnabled(false);
-                            remainingTime.setText(String.valueOf(getTime));
-                            getTime--;
-                        }
-
-                        public void onFinish() {
-                            remainingTime.setVisibility(View.INVISIBLE);
-                            timerFinishText.setVisibility(View.VISIBLE);
-                            timerFinishText.startAnimation(timerFinishAnimation);
-                            defaultRingtone.play();
-                        }
-                    }.start();
-
-                } else if (secondPicker == 8) {
-                    Log.e("picker value", "You selected 9");
-                    getTime = getTime + 9;
-
-                    countDownTimer = new CountDownTimer(9000, 1000) {
-                        public void onTick(long millisUntilFinished) {
-                            startTimerButton.setEnabled(false);
-                            remainingTime.setText(String.valueOf(getTime));
-                            getTime--;
-                        }
-
-                        public void onFinish() {
-                            remainingTime.setVisibility(View.INVISIBLE);
-                            timerFinishText.setVisibility(View.VISIBLE);
-                            timerFinishText.startAnimation(timerFinishAnimation);
-                            defaultRingtone.play();
-                        }
-                    }.start();
-
-                } else {
-                    Log.e("picker value", "You selected 10");
-                    getTime = getTime + 10;
-
-                    countDownTimer = new CountDownTimer(10000, 1000) {
-                        public void onTick(long millisUntilFinished) {
-                            startTimerButton.setEnabled(false);
-                            remainingTime.setText(String.valueOf(getTime));
-                            getTime--;
-                        }
-
-                        public void onFinish() {
+                            isTimerRunning = false;
                             remainingTime.setVisibility(View.INVISIBLE);
                             timerFinishText.setVisibility(View.VISIBLE);
                             timerFinishText.startAnimation(timerFinishAnimation);
@@ -292,10 +153,6 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
                         }
                     }.start();
                 }
-                break;
-
-            case R.id.timerPauseButton:
-                countDownTimer.cancel();
                 break;
 
             case R.id.timerRestartButton:
