@@ -6,19 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.notifications.NotificationsFragment">
 
-    <TextClock
-        android:id="@+id/textClock1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="115dp"
-        android:layout_marginTop="20dp"
-        android:format24Hour="dd.MM.yyyy k:mm"
-        android:textColor="#F1511B"
-        android:textSize="45sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <NumberPicker
         android:id="@+id/selectTime"
         android:layout_width="wrap_content"

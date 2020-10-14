@@ -13,7 +13,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.NumberPicker;
-import android.widget.TextClock;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -26,8 +25,6 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
 
     private NotificationsViewModel notificationsViewModel;
 
-    TextClock textClock;
-
     NumberPicker pickedNumber;
     private String[] timerSeconds;
 
@@ -38,11 +35,13 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
     TextView remainingTime;
     TextView timerFinishText;
 
+    int minValue = 0;
+    int maxValue = 10;
+    int i;
     int getTime;
-    int getTimeRemain;
+    int getTimeRemaining;
     int timeLeft;
     int pickedSecond;
-    int formattedPickedSecond;
     boolean isTimerRunning;
 
     CountDownTimer countDownTimer;
@@ -55,12 +54,13 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
                 new ViewModelProvider(this).get(NotificationsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_notifications, container, false);
 
-        textClock = root.findViewById(R.id.textClock1);
-
         pickedNumber = root.findViewById(R.id.selectTime);
-        pickedNumber.setMaxValue(9);
-        pickedNumber.setMinValue(0);
-        timerSeconds  = new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
+        pickedNumber.setMinValue(minValue);
+        pickedNumber.setMaxValue(maxValue);
+        timerSeconds = new String[pickedNumber.getMaxValue() + 1];
+        for (i = 0; i < pickedNumber.getMaxValue() + 1; i++) {
+            timerSeconds[i] = i + " s";
+        }
         pickedNumber.setDisplayedValues(timerSeconds);
 
         pickedNumber.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
@@ -95,14 +95,13 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
         switch (view.getId()) {
             case R.id.timerStartButton:
                 pickedSecond = pickedNumber.getValue();
-                formattedPickedSecond = pickedSecond + 1;
-                Log.e("What is picked time?", String.valueOf(formattedPickedSecond));
+                Log.e("What is picked time?", String.valueOf(pickedSecond));
 
-                countDownTimer = new CountDownTimer(formattedPickedSecond * 1000, 1000) {
+                countDownTimer = new CountDownTimer(pickedSecond * 1000, 1000) {
                     public void onTick(long millisUntilFinished) {
                         startTimerButton.setEnabled(false);
-                        remainingTime.setText(String.valueOf(formattedPickedSecond));
-                        formattedPickedSecond--;
+                        remainingTime.setText(String.valueOf(pickedSecond));
+                        pickedSecond--;
                     }
 
                     public void onFinish() {
@@ -121,31 +120,23 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
                     isTimerRunning = false;
                     countDownTimer.cancel();
                     pauseTimerButton.setText(R.string.timerPlayButton);
-
-                    Log.e("Is timer paused or not?", "The time is not running anymore.");
-                    Log.e("What is value?", String.valueOf(isTimerRunning));
                 }
+
                 else {
                     isTimerRunning = true;
-                    pauseTimerButton.setText(R.string.timerPauseButton);
                     pauseTimerButton.setEnabled(false);
-
-                    Log.e("Is timer paused or not?", "The timer is running again.");
-                    Log.e("What is value?", String.valueOf(isTimerRunning));
 
                     timeLeft = Integer.parseInt(String.valueOf(remainingTime.getText()));
                     Log.e("What is remaining time?", String.valueOf(Integer.valueOf(timeLeft)));
 
-                    getTimeRemain = getTimeRemain + timeLeft;
+                    getTimeRemaining = getTimeRemaining + timeLeft;
                     countDownTimer = new CountDownTimer(timeLeft * 1000, 1000) {
                         public void onTick(long millisUntilFinished) {
-                            startTimerButton.setEnabled(false);
-                            remainingTime.setText(String.valueOf(getTimeRemain));
-                            getTimeRemain--;
+                            remainingTime.setText(String.valueOf(getTimeRemaining));
+                            getTimeRemaining--;
                         }
 
                         public void onFinish() {
-                            isTimerRunning = false;
                             remainingTime.setVisibility(View.INVISIBLE);
                             timerFinishText.setVisibility(View.VISIBLE);
                             timerFinishText.startAnimation(timerFinishAnimation);
