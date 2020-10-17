@@ -24,6 +24,16 @@
     <string name="airplaneModeOn">Lentokonetila päällä</string>
     <string name="airplaneModeOff">Lentokonetila pois</string>
 
+    <string name="internetConnected">Laite on yhdistetty internettiin.</string>
+    <string name="noInternetConnection">Osoitetta ei voida päivittää. Ei internet yhteyttä.</string>
+
     <string name="timerFinishText">Aika loppui</string>
+
+    <string name="searchCompany">Etsi yritystä</string>
+    <string name="searchCompanyButton">Hae</string>
+    <string name="searchCompanyHint">Hae yritystä nimellä</string>
+
+    <string name="gestureLeftSwipe">Pyyhkäisit vasemmalle arvauspeliin</string>
+    <string name="gestureRightSwipe">Pyyhkäisit oikealle arvauspeliin</string>
 
 </resources>

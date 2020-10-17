@@ -7,8 +7,9 @@
 
     <color name="clickHereButtonColor">#FF5226</color>
     <color name="guessGameButtonColor">#FF5896</color>
-    <color name="navigationButtonColor">#37A14D</color>
 
     <color name="guessGameCardColor">#989</color>
     <color name="guessGameRestartButton">#FA04FA</color>
+
+    <color name="searchCompanyButton">#37A14D</color>
 </resources>

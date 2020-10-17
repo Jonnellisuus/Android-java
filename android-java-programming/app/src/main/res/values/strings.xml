@@ -28,11 +28,21 @@
     <string name="airplaneModeOn">Airplane mode on</string>
     <string name="airplaneModeOff">Airplane mode off</string>
 
+    <string name="internetConnected">Device is connected to internet.</string>
+    <string name="noInternetConnection">Address cannot be updated. No internet connection.</string>
+
     <string name="timerStartButton" translatable="false">Start</string>
     <string name="timerPauseButton" translatable="false">Pause</string>
     <string name="timerPlayButton" translatable="false">Play</string>
     <string name="timerResetButton" translatable="false">Reset</string>
     <string name="timerResetTime" translatable="false"> </string>
     <string name="timerFinishText">Time is out</string>
+
+    <string name="searchCompany">Search company</string>
+    <string name="searchCompanyButton">Search</string>
+    <string name="searchCompanyHint">Search a company by name</string>
+
+    <string name="gestureLeftSwipe">You swiped left to guess game</string>
+    <string name="gestureRightSwipe">You swiped right to guess game</string>
 
 </resources>

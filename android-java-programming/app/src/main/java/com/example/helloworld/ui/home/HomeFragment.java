@@ -4,15 +4,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.helloworld.GuessGame;
+import com.example.helloworld.HeroActivity;
 import com.example.helloworld.R;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
@@ -25,6 +29,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     TextView helloText;
 
     Button guessGameButton;
+    Button searchCompanyButton;
+
+    float firstCoordinateX, secondCoordinateX;
+    int coordinateDistance = 100;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
@@ -43,6 +51,39 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         guessGameButton = root.findViewById(R.id.guessGameButton);
         guessGameButton.setOnClickListener(this);
 
+        searchCompanyButton = root.findViewById(R.id.searchCompanyButton);
+        searchCompanyButton.setOnClickListener(this);
+
+        root.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        firstCoordinateX = event.getX();
+                        break;
+
+                    case MotionEvent.ACTION_UP:
+                        secondCoordinateX = event.getX();
+                        float valueX = secondCoordinateX - firstCoordinateX;
+
+                        if (Math.abs(valueX) > coordinateDistance) {
+                            if (secondCoordinateX > firstCoordinateX) {
+                                startActivity(new Intent(getActivity(), GuessGame.class));
+                                Toast toast = Toast.makeText(getContext(), R.string.gestureRightSwipe, Toast.LENGTH_LONG);
+                                toast.show();
+                            }
+
+                            else {
+                                startActivity(new Intent(getActivity(), GuessGame.class));
+                                Toast toast = Toast.makeText(getContext(), R.string.gestureLeftSwipe, Toast.LENGTH_LONG);
+                                toast.show();
+                            }
+                        }
+                }
+                return true;
+            }
+        });
+
         /* One way to do a click event.
         Button button = (Button) findViewById(R.id.textButton);
         button.setOnClickListener(new View.OnClickListener() {
@@ -53,15 +94,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         });
          */
 
-        /* This would set text "This is home fragment".
-        final TextView textView = root.findViewById(R.id.text_home);
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-         */
         return root;
     }
 
@@ -92,6 +124,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
             case R.id.guessGameButton:
                 startActivity(new Intent(getActivity(), GuessGame.class));
+                break;
+
+            case R.id.searchCompanyButton:
+                startActivity(new Intent(getActivity(), HeroActivity.class));
                 break;
         }
     }
