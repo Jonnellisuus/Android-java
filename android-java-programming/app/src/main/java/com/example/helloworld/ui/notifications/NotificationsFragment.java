@@ -36,10 +36,8 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
     TextView timerFinishText;
 
     int minValue = 0;
-    int maxValue = 10;
+    int maxValue = 60;
     int i;
-    int getTime;
-    int getTimeRemaining;
     int timeLeft;
     int pickedSecond;
     boolean isTimerRunning;
@@ -84,7 +82,6 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
         remainingTime = root.findViewById(R.id.timerRemainingTime);
 
         timerFinishAnimation = AnimationUtils.loadAnimation(requireActivity().getApplicationContext(), R.anim.timer_finish_animation);
-
         defaultRingtone = RingtoneManager.getRingtone(getActivity(), Settings.System.DEFAULT_RINGTONE_URI);
 
         return root;
@@ -124,16 +121,13 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
 
                 else {
                     isTimerRunning = true;
-                    pauseTimerButton.setEnabled(false);
-
+                    pauseTimerButton.setText(R.string.timerPauseButton);
                     timeLeft = Integer.parseInt(String.valueOf(remainingTime.getText()));
-                    Log.e("What is remaining time?", String.valueOf(Integer.valueOf(timeLeft)));
 
-                    getTimeRemaining = getTimeRemaining + timeLeft;
                     countDownTimer = new CountDownTimer(timeLeft * 1000, 1000) {
                         public void onTick(long millisUntilFinished) {
-                            remainingTime.setText(String.valueOf(getTimeRemaining));
-                            getTimeRemaining--;
+                            remainingTime.setText(String.valueOf(timeLeft));
+                            timeLeft--;
                         }
 
                         public void onFinish() {
@@ -149,7 +143,6 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
             case R.id.timerRestartButton:
                 defaultRingtone.stop();
                 countDownTimer.cancel();
-                getTime = 0;
                 getParentFragmentManager().beginTransaction().detach(this).attach(this).commit();
                 break;
         }
