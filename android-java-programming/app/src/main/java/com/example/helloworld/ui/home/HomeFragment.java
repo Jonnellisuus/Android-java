@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.helloworld.GuessGame;
 import com.example.helloworld.HeroActivity;
 import com.example.helloworld.R;
+import com.example.helloworld.SearchCompany;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
@@ -127,7 +128,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.searchCompanyButton:
-                startActivity(new Intent(getActivity(), HeroActivity.class));
+                startActivity(new Intent(getActivity(), SearchCompany.class));
                 break;
         }
     }

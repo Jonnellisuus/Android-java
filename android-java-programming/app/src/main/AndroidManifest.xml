@@ -14,12 +14,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true"> <!-- In case map does not open -->
+        android:usesCleartextTraffic="true">
+        <receiver
+            android:name=".InternetReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name = "android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name = "android.net.wifi.WIFI_STATE_CHANGED" />
+            </intent-filter>
+        </receiver>
+
         <receiver
             android:name=".ApmReceiver"
             android:enabled="true"
-            android:exported="true">
-        </receiver>
+            android:exported="true" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,6 +41,18 @@
             android:name=".GuessGame"
             android:label="@string/guessGame"
             android:parentActivityName=".MainActivity">
+
+        </activity>
+        <activity
+            android:name=".SearchCompany"
+            android:label="@string/searchCompany"
+            android:parentActivityName=".MainActivity">
+
+        </activity>
+        <activity
+            android:name=".HeroActivity"
+            android:parentActivityName=".MainActivity">
+
         </activity>
     </application>
 
