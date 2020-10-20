@@ -44,5 +44,6 @@
 
     <string name="gestureLeftSwipe">You swiped left to guess game</string>
     <string name="gestureRightSwipe">You swiped right to guess game</string>
+    <string name="swipeResetTimer">Swipe to left or right to reset the timer</string>
 
 </resources>

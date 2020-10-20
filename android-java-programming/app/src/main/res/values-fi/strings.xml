@@ -35,5 +35,6 @@
 
     <string name="gestureLeftSwipe">Pyyhkäisit vasemmalle arvauspeliin</string>
     <string name="gestureRightSwipe">Pyyhkäisit oikealle arvauspeliin</string>
+    <string name="swipeResetTimer">Pyyhkäise sivulle nollataksesi ajastimen</string>
 
 </resources>

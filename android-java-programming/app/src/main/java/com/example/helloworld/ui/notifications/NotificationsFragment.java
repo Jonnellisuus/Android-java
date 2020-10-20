@@ -7,6 +7,7 @@ import android.os.CountDownTimer;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -34,12 +35,15 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
 
     TextView remainingTime;
     TextView timerFinishText;
+    TextView swipeResetTimer;
 
     int minValue = 0;
     int maxValue = 60;
     int i;
     int timeLeft;
     int pickedSecond;
+    float firstCoordinateX, secondCoordinateX;
+    int coordinateDistance = 100;
     boolean isTimerRunning;
 
     CountDownTimer countDownTimer;
@@ -80,9 +84,36 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
 
         timerFinishText = root.findViewById(R.id.timerFinishedText);
         remainingTime = root.findViewById(R.id.timerRemainingTime);
+        swipeResetTimer = root.findViewById(R.id.resetTimerSwipeText);
 
         timerFinishAnimation = AnimationUtils.loadAnimation(requireActivity().getApplicationContext(), R.anim.timer_finish_animation);
         defaultRingtone = RingtoneManager.getRingtone(getActivity(), Settings.System.DEFAULT_RINGTONE_URI);
+
+        root.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        firstCoordinateX = event.getX();
+                        break;
+
+                    case MotionEvent.ACTION_UP:
+                        secondCoordinateX = event.getX();
+                        float valueX = secondCoordinateX - firstCoordinateX;
+
+                        if (Math.abs(valueX) > coordinateDistance) {
+                            if (secondCoordinateX > firstCoordinateX) {
+                                swipeResetTimer();
+                            }
+
+                            else {
+                                swipeResetTimer();
+                            }
+                        }
+                }
+                return true;
+            }
+        });
 
         return root;
     }
@@ -103,8 +134,11 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
 
                     public void onFinish() {
                         isTimerRunning = false;
+                        startTimerButton.setEnabled(false);
+                        pauseTimerButton.setEnabled(false);
                         remainingTime.setVisibility(View.INVISIBLE);
                         timerFinishText.setVisibility(View.VISIBLE);
+                        swipeResetTimer.setVisibility(View.VISIBLE);
                         timerFinishText.startAnimation(timerFinishAnimation);
                         defaultRingtone.play();
                     }
@@ -131,8 +165,10 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
                         }
 
                         public void onFinish() {
+                            pauseTimerButton.setEnabled(false);
                             remainingTime.setVisibility(View.INVISIBLE);
                             timerFinishText.setVisibility(View.VISIBLE);
+                            swipeResetTimer.setVisibility(View.VISIBLE);
                             timerFinishText.startAnimation(timerFinishAnimation);
                             defaultRingtone.play();
                         }
@@ -146,5 +182,11 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
                 getParentFragmentManager().beginTransaction().detach(this).attach(this).commit();
                 break;
         }
+    }
+
+    public void swipeResetTimer() {
+        defaultRingtone.stop();
+        countDownTimer.cancel();
+        getParentFragmentManager().beginTransaction().detach(this).attach(this).commit();
     }
 }
