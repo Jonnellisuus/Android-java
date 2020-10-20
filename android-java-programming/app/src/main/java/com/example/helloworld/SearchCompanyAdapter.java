@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,6 +30,9 @@ public class SearchCompanyAdapter extends RecyclerView.Adapter<SearchCompanyAdap
     public void onBindViewHolder(ViewHolder holder, int position) {
         Company company = companyList.get(position);
         holder.companyName.setText(company.getCompanyName());
+        holder.companyBusinessID.setText(company.getBusinessID());
+        holder.companyForm.setText(company.getCompanyForm());
+        holder.companyRegistrationDate.setText(company.getRegistrationDate());
     }
 
     @Override
@@ -37,11 +41,21 @@ public class SearchCompanyAdapter extends RecyclerView.Adapter<SearchCompanyAdap
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView companyName;
+        public TextView companyName, companyBusinessID, companyForm, companyRegistrationDate;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            companyName = itemView.findViewById(R.id.companyName);
+            companyName = itemView.findViewById(R.id.textViewCompanyName);
+            companyBusinessID = itemView.findViewById(R.id.textViewCompanyBusinessID);
+            companyForm = itemView.findViewById(R.id.textViewCompanyForm);
+            companyRegistrationDate = itemView.findViewById(R.id.textViewCompanyRegistrationDate);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(v.getContext(), "Do Something With this Click", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 }

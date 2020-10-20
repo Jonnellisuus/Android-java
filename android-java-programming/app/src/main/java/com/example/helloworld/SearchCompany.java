@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchCompany extends AppCompatActivity {
-    private static final String JSON_URL = "http://avoindata.prh.fi/bis/v1?totalResults=false&maxResults=10&resultsFrom=0&companyRegistrationFrom=1900-01-01";
+    private static final String JSON_URL = "http://avoindata.prh.fi/bis/v1?totalResults=false&maxResults=1000&resultsFrom=0&companyRegistrationFrom=1900-01-01";
     RecyclerView recyclerView;
     List<Company> companyList;
 
@@ -67,7 +67,10 @@ public class SearchCompany extends AppCompatActivity {
                                 JSONObject companyObject = companyArray.getJSONObject(i);
 
                                 // Creating a company object and giving them the values from json object.
-                                Company company = new Company(companyObject.getString("name"));
+                                Company company = new Company(companyObject.getString("name"),
+                                                            companyObject.getString("businessId"),
+                                                            companyObject.getString("companyForm"),
+                                                            companyObject.getString("registrationDate"));
 
                                 // adding the company to a list.
                                 companyList.add(company);

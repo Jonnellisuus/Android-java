@@ -25,7 +25,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/companyRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:overScrollMode="never"/>
 
     <ProgressBar
         android:id="@+id/progressBar"
