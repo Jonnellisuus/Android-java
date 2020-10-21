@@ -4,20 +4,25 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class SearchCompanyAdapter extends RecyclerView.Adapter<SearchCompanyAdapter.ViewHolder> {
+public class SearchCompanyAdapter extends RecyclerView.Adapter<SearchCompanyAdapter.ViewHolder> implements Filterable {
     private Context context;
     private List<Company> companyList;
+    private List<Company> companyListFull;
 
     public SearchCompanyAdapter(Context context, List<Company> companyList) {
         this.context = context;
         this.companyList = companyList;
+        companyListFull = new ArrayList<>(companyList);
     }
 
     @Override
@@ -58,4 +63,36 @@ public class SearchCompanyAdapter extends RecyclerView.Adapter<SearchCompanyAdap
             });
         }
     }
+
+    @Override
+    public Filter getFilter() {
+        return filterCompany;
+    }
+
+    private Filter filterCompany = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            List<Company> filteredList = new ArrayList<>();
+            if (charSequence == null || charSequence.length() == 0) {
+                filteredList.addAll(companyListFull);
+            } else {
+                String filterPattern = charSequence.toString().toLowerCase().trim();
+                for (Company item : companyListFull) {
+                    if (item.getCompanyName().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(item);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            companyList.clear();
+            companyList.addAll((List) filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
 }

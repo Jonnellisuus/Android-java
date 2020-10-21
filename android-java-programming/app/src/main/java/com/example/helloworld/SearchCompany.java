@@ -1,8 +1,13 @@
 package com.example.helloworld;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +32,7 @@ public class SearchCompany extends AppCompatActivity {
     private static final String JSON_URL = "http://avoindata.prh.fi/bis/v1?totalResults=false&maxResults=1000&resultsFrom=0&companyRegistrationFrom=1900-01-01";
     RecyclerView recyclerView;
     List<Company> companyList;
+    SearchCompanyAdapter searchCompanyAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +83,7 @@ public class SearchCompany extends AppCompatActivity {
                             }
 
                             recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                            SearchCompanyAdapter searchCompanyAdapter = new SearchCompanyAdapter(getApplicationContext(), companyList);
+                            searchCompanyAdapter = new SearchCompanyAdapter(getApplicationContext(), companyList);
                             recyclerView.setAdapter(searchCompanyAdapter);
 
                         } catch (JSONException e) {
@@ -94,5 +100,29 @@ public class SearchCompany extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.options_menu, menu);
+        MenuItem menuItem = menu.findItem(R.id.searchIcon);
+
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                searchCompanyAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+        return true;
     }
 }

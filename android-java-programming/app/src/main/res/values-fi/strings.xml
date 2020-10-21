@@ -32,6 +32,7 @@
     <string name="searchCompany">Etsi yritystä</string>
     <string name="searchCompanyButton">Hae</string>
     <string name="searchCompanyHint">Hae yritystä nimellä</string>
+    <string name="searchCompanyTitle">Hae</string>
 
     <string name="gestureLeftSwipe">Pyyhkäisit vasemmalle arvauspeliin</string>
     <string name="gestureRightSwipe">Pyyhkäisit oikealle arvauspeliin</string>

@@ -46,7 +46,8 @@
         <activity
             android:name=".SearchCompany"
             android:label="@string/searchCompany"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:windowSoftInputMode="adjustNothing">
 
         </activity>
         <activity
