@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/searchIcon"
         android:title="@string/searchCompanyTitle"
+        android:icon="@drawable/ic_baseline_search_24"
         app:actionViewClass="android.widget.SearchView"
         app:showAsAction="always" />
 </menu>
