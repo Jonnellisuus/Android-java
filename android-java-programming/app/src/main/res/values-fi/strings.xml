@@ -33,6 +33,11 @@
     <string name="searchCompanyButton">Hae</string>
     <string name="searchCompanyHint">Hae yritystä nimellä</string>
     <string name="searchCompanyTitle">Hae</string>
+    <string name="textViewSearching">Haetaan…</string>
+    <string name="textViewCompanyNameTitle">Yrityksen nimi:</string>
+    <string name="textViewCompanyBusinessIDTitle">Y-tunnus:</string>
+    <string name="textViewCompanyFormTitle">Yritysmuoto:</string>
+    <string name="textViewCompanyRegistrationDateTitle">Rekisteröintipäivä:</string>
 
     <string name="gestureLeftSwipe">Pyyhkäisit vasemmalle arvauspeliin</string>
     <string name="gestureRightSwipe">Pyyhkäisit oikealle arvauspeliin</string>

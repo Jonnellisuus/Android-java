@@ -1,6 +1,8 @@
 package com.example.helloworld;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -8,6 +10,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.helloworld.ui.home.HomeFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,6 +37,13 @@ public class SearchCompany extends AppCompatActivity {
     RecyclerView recyclerView;
     List<Company> companyList;
     SearchCompanyAdapter searchCompanyAdapter;
+    ProgressBar progressBar;
+    String getCompany;
+    TextView searchingText;
+    TextView companyNameTitle;
+    TextView companyBusinessIDTitle;
+    TextView companyFormTitle;
+    TextView companyRegistrationDateTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,19 +53,29 @@ public class SearchCompany extends AppCompatActivity {
         recyclerView = findViewById(R.id.companyRecyclerView);
         companyList = new ArrayList<>();
 
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        searchingText = findViewById(R.id.textViewSearching);
+
+        companyNameTitle = findViewById(R.id.textViewCompanyNameTitle);
+        companyBusinessIDTitle = findViewById(R.id.textViewCompanyBusinessIDTitle);
+        companyFormTitle = findViewById(R.id.textViewCompanyFormTitle);
+        companyRegistrationDateTitle = findViewById(R.id.textViewCompanyRegistrationDateTitle);
+
+        Intent intent = getIntent();
+        getCompany = intent.getStringExtra(HomeFragment.getCertainCompany);
+        Log.e("Test", getCompany);
+
         loadCompanyList();
     }
 
     private void loadCompanyList() {
-        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        progressBar.setVisibility(View.VISIBLE);
-
         // Creating a string request to send request to the url.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, JSON_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        progressBar.setVisibility(View.INVISIBLE);
+                        progressBar.setVisibility(View.GONE);
+                        searchingText.setVisibility(View.GONE);
 
                         try {
                             // Getting the whole json object from the response.

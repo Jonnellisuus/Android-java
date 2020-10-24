@@ -2,12 +2,15 @@ package com.example.helloworld.ui.home;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,10 +18,15 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.helloworld.Company;
 import com.example.helloworld.GuessGame;
 import com.example.helloworld.HeroActivity;
 import com.example.helloworld.R;
 import com.example.helloworld.SearchCompany;
+import com.example.helloworld.SearchCompanyAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
@@ -34,6 +42,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     float firstCoordinateX, secondCoordinateX;
     int coordinateDistance = 100;
+
+    List<Company> companyList;
+    SearchCompanyAdapter searchCompanyAdapter;
+    EditText editText;
+    String getCompany;
+
+    public static final String getCertainCompany = "com.example.helloworld.ui.home.getCertainCompany";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
@@ -54,6 +69,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         searchCompanyButton = root.findViewById(R.id.searchCompanyButton);
         searchCompanyButton.setOnClickListener(this);
+
+        editText = root.findViewById(R.id.editTextSearchCompany);
 
         root.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -128,8 +145,37 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.searchCompanyButton:
-                startActivity(new Intent(getActivity(), SearchCompany.class));
+                editText.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    }
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    }
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                        filter(s.toString());
+                    }
+                });
+
+                //startActivity(new Intent(getActivity(), SearchCompany.class));
+
+                getCompany = editText.getText().toString();
+
+                Intent intent = new Intent(getActivity(), SearchCompany.class);
+                intent.putExtra(getCertainCompany, getCompany);
+                startActivity(intent);
                 break;
         }
+    }
+
+    private void filter(String text) {
+        ArrayList<Company> filteredList = new ArrayList<>();
+        for (Company item : companyList) {
+            if (item.getCompanyName().toLowerCase().contains(text.toLowerCase())) {
+                filteredList.add(item);
+            }
+        }
+        searchCompanyAdapter.filterList(filteredList);
     }
 }

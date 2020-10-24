@@ -42,6 +42,11 @@
     <string name="searchCompanyButton">Search</string>
     <string name="searchCompanyHint">Search a company by name</string>
     <string name="searchCompanyTitle">Search</string>
+    <string name="textViewSearching">Searching…</string>
+    <string name="textViewCompanyNameTitle">Company name:</string>
+    <string name="textViewCompanyBusinessIDTitle">Company business ID:</string>
+    <string name="textViewCompanyFormTitle">Company form:</string>
+    <string name="textViewCompanyRegistrationDateTitle">Registration date:</string>
 
     <string name="gestureLeftSwipe">You swiped left to guess game</string>
     <string name="gestureRightSwipe">You swiped right to guess game</string>
