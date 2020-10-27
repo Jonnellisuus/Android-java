@@ -1,5 +1,6 @@
 package com.example.helloworld;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -20,24 +21,17 @@ import java.util.Random;
 
 public class GuessGame extends AppCompatActivity implements View.OnClickListener {
 
-    CardView firstCard;
-    CardView secondCard;
-    CardView thirdCard;
-    CardView fourthCard;
-
+    CardView firstCard, secondCard, thirdCard, fourthCard;
     Animation inCorrectChoice;
-    Button restartButton;
-
-    TextView guessGameScore;
-    TextView guessGameCurrentTries;
-
-    ImageView firstDiamondImage;
-    ImageView secondDiamondImage;
-    ImageView thirdDiamondImage;
-    ImageView fourthDiamondImage;
+    Button restartButton, resetHighScoreButton;
+    TextView guessGameScore, guessGameCurrentTries, guessGameHighScoreText;
+    ImageView firstDiamondImage, secondDiamondImage, thirdDiamondImage, fourthDiamondImage;
 
     int randomNumber;
     int clickCount = 0;
+    int guessGameHighScore;
+
+    public static final String SHARED_PREFS = "sharedPrefs";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,16 +56,24 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
         restartButton = findViewById(R.id.restartGuessGame);
         restartButton.setOnClickListener(this);
 
+        resetHighScoreButton = findViewById(R.id.resetHighScore);
+        resetHighScoreButton.setOnClickListener(this);
+
         guessGameScore = findViewById(R.id.guessGameScoreText);
         guessGameCurrentTries = findViewById(R.id.guessGameCurrentTries);
+        guessGameHighScoreText = findViewById(R.id.guessGameHighScore);
 
         inCorrectChoice = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.guess_game_incorrect_answer);
 
-        /*
-        This would be used to generate random number if onStart method was not used.
+        loadHighScore();
+        updateHighScore();
 
-        randomNumber = generateRandomNumber();
-         */
+        if (guessGameHighScore == 0) {
+            guessGameHighScoreText.setVisibility(View.GONE);
+        }
+        else {
+            guessGameHighScoreText.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -132,6 +134,15 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
 
                     writeScoreToFile();
                     readScoreFromFile();
+
+                    if (guessGameHighScore == 0) {
+                        guessGameHighScoreText.setText(guessGameScore.getText().toString());
+                        saveHighScore();
+                    }
+                    else if (clickCount < guessGameHighScore) {
+                        guessGameHighScoreText.setText(guessGameScore.getText().toString());
+                        saveHighScore();
+                    }
                 }
 
                 else {
@@ -153,6 +164,15 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
 
                     writeScoreToFile();
                     readScoreFromFile();
+
+                    if (guessGameHighScore == 0) {
+                        guessGameHighScoreText.setText(guessGameScore.getText().toString());
+                        saveHighScore();
+                    }
+                    else if (clickCount < guessGameHighScore) {
+                        guessGameHighScoreText.setText(guessGameScore.getText().toString());
+                        saveHighScore();
+                    }
                 }
 
                 else {
@@ -174,6 +194,15 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
 
                     writeScoreToFile();
                     readScoreFromFile();
+
+                    if (guessGameHighScore == 0) {
+                        guessGameHighScoreText.setText(guessGameScore.getText().toString());
+                        saveHighScore();
+                    }
+                    else if (clickCount < guessGameHighScore) {
+                        guessGameHighScoreText.setText(guessGameScore.getText().toString());
+                        saveHighScore();
+                    }
                 }
 
                 else {
@@ -195,6 +224,15 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
 
                     writeScoreToFile();
                     readScoreFromFile();
+
+                    if (guessGameHighScore == 0) {
+                        guessGameHighScoreText.setText(guessGameScore.getText().toString());
+                        saveHighScore();
+                    }
+                    else if (clickCount < guessGameHighScore) {
+                        guessGameHighScoreText.setText(guessGameScore.getText().toString());
+                        saveHighScore();
+                    }
                 }
 
                 else {
@@ -210,8 +248,33 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
                 startActivity(getIntent());
                 break;
 
+            case R.id.resetHighScore:
+                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,0);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.remove("HighScore");
+                editor.apply();
+
+                finish();
+                startActivity(getIntent());
+                break;
+
             default:
                 break;
         }
+    }
+
+    public void saveHighScore() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        int saveHighScore = Integer.parseInt(guessGameHighScoreText.getText().toString().trim());
+        editor.putInt("HighScore", saveHighScore);
+        editor.apply();
+    }
+    public void loadHighScore() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        guessGameHighScore = sharedPreferences.getInt("HighScore", 0);
+    }
+    public void updateHighScore() {
+        guessGameHighScoreText.setText(String.valueOf(guessGameHighScore));
     }
 }

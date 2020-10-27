@@ -10,6 +10,7 @@
 
     <color name="guessGameCardColor">#989</color>
     <color name="guessGameRestartButton">#FA04FA</color>
+    <color name="resetHighScoreButton">#E80000</color>
 
     <color name="searchCompanyButton">#37A14D</color>
 </resources>
