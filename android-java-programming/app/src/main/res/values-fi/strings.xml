@@ -13,8 +13,8 @@
     <string name="guessGameResetHighScoreButton">Nollaa tulos</string>
 
     <string name="title_home">Koti</string>
-    <string name="title_dashboard">Raportointinäkymä</string>
-    <string name="title_notifications">Ilmoitukset</string>
+    <string name="title_location">Sijainti</string>
+    <string name="title_timer">Ajastin</string>
 
     <string name="locationTitle">Sijaintisi</string>
     <string name="locationButton">Näytä sijainti kartalla</string>
