@@ -91,6 +91,7 @@ public class DashboardFragment extends Fragment implements LocationListener {
             @Override
             public void onClick(View view) {
                 if (lastLocation != null) {
+
                     String uri = String.format(Locale.ENGLISH, "http://maps.google.com/maps?q=loc:%f,%f", latitude, longitude);
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
                     startActivity(intent);
@@ -99,7 +100,7 @@ public class DashboardFragment extends Fragment implements LocationListener {
                     Uri intentUri = Uri.parse(String.valueOf(lastLocation));
                     Intent locationIntent = new Intent(Intent.ACTION_VIEW, intentUri);
                     locationIntent.setPackage("com.google.android.apps.maps");
-                    if (locationIntent.resolveActivity(getPackageManager()) != null) {
+                    if (locationIntent.resolveActivity(getActivity().getPackageManager()) != null) {
                         startActivity(locationIntent);
                     }
                      */
@@ -180,21 +181,19 @@ public class DashboardFragment extends Fragment implements LocationListener {
     @Override
     public void onLocationChanged(@NonNull Location location) {
         lastLocation = location;
-
         locationLatitude.setText(Double.toString(lastLocation.getLatitude()));
         locationLongitude.setText(Double.toString(lastLocation.getLongitude()));
         locationAddress.setText(getAddress(lastLocation));
     }
 
     public String getAddress(Location location) {
-        if (lastLocation != null) {
+        if (location != null) {
             latitude = location.getLatitude();
             longitude = location.getLongitude();
 
             geocoder = new Geocoder(getContext(), Locale.getDefault());
             try {
-                addressList = geocoder.getFromLocation(
-                        latitude, longitude, 1);
+                addressList = geocoder.getFromLocation(latitude, longitude, 1);
                 if (addressList != null && addressList.size() > 0) {
                     Address address = addressList.get(0);
 
@@ -203,31 +202,9 @@ public class DashboardFragment extends Fragment implements LocationListener {
                     Log.e(TAG, address.getAddressLine(0));
                 }
             } catch (IOException e) {
-                Log.e(TAG, "Unable connect to Geocoder", e);
+                Log.e(TAG, "Unable to connect Geocoder", e);
             }
         }
         return currentLocation;
     }
-
-    /*
-    The code below would also set address to the address field.
-
-    public String getAddress(Location location) {
-        if (lastLocation != null) {
-            try {
-                Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
-                List<Address> addresses = geocoder.getFromLocation(
-                        location.getLatitude(),
-                        location.getLongitude(),
-                                    1);
-                Address address = addresses.get(0);
-                currentLocation = address.getAddressLine(0);
-            }
-            catch (Exception e) {
-                Log.e(TAG, "Unable connect to Geocoder", e);
-            }
-        }
-        return currentLocation;
-    }
-     */
 }
