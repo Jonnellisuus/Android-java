@@ -12,6 +12,7 @@
     <string name="guessGameTotalTriesText">"The total number of attempts it took you to find the diamond: "</string>
     <string name="guessGameRefreshButton">Restart</string>
     <string name="guessGameResetHighScoreButton">Reset highscore</string>
+    <string name="guessGameHighScoreText">Highscore:</string>
 
     <string name="title_activity_main" translatable="false">MainActivity</string>
     <string name="title_home">Home</string>

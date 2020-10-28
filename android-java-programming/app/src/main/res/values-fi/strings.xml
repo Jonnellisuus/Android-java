@@ -11,6 +11,7 @@
     <string name="guessGameTotalTriesText">Sinä jouduit yrittämään näin monta kertaa, kunnes löysit timantin:</string>
     <string name="guessGameRefreshButton">Uudelleen</string>
     <string name="guessGameResetHighScoreButton">Nollaa tulos</string>
+    <string name="guessGameHighScoreText">Paras tulos:</string>
 
     <string name="title_home">Koti</string>
     <string name="title_location">Sijainti</string>
