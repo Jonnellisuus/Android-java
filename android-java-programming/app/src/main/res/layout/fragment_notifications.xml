@@ -25,6 +25,7 @@
         android:layout_marginStart="49dp"
         android:layout_marginBottom="100dp"
         android:text="@string/timerStartButton"
+        app:backgroundTint="@color/timerButtons"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -36,28 +37,31 @@
         android:layout_marginStart="158dp"
         android:layout_marginBottom="100dp"
         android:text="@string/timerPauseButton"
+        app:backgroundTint="@color/timerButtons"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/timerRestartButton"
+        android:id="@+id/timerResetButton"
         style="?attr/materialButtonOutlinedStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="270dp"
         android:layout_marginBottom="100dp"
         android:text="@string/timerResetButton"
+        app:backgroundTint="@color/timerButtons"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/timerRemainingTime"
+        android:id="@+id/timerRemainingTimeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="195dp"
         android:layout_marginBottom="225dp"
         android:text=""
         android:textSize="30sp"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -70,6 +74,7 @@
         android:text="@string/timerFinishText"
         android:visibility="invisible"
         android:textSize="30sp"
+        android:textColor="@android:color/black"
         android:foreground="?attr/selectableItemBackground"
         android:stateListAnimator="@anim/timer_finish_animation"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -31,11 +31,11 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
 
     Button startTimerButton;
     Button pauseTimerButton;
-    Button restartTimerButton;
+    Button resetTimerButton;
 
-    TextView remainingTime;
+    TextView remainingTimeText;
     TextView timerFinishText;
-    TextView swipeResetTimer;
+    TextView swipeResetTimerText;
 
     int minValue = 0;
     int maxValue = 60;
@@ -57,8 +57,13 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
         View root = inflater.inflate(R.layout.fragment_notifications, container, false);
 
         pickedNumber = root.findViewById(R.id.selectTime);
+
+        // The code below will prevent user from changing the values in NumberPicker.
+        pickedNumber.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+
         pickedNumber.setMinValue(minValue);
         pickedNumber.setMaxValue(maxValue);
+
         timerSeconds = new String[pickedNumber.getMaxValue() + 1];
         for (i = 0; i < pickedNumber.getMaxValue() + 1; i++) {
             timerSeconds[i] = i + " s";
@@ -78,13 +83,15 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
 
         pauseTimerButton = root.findViewById(R.id.timerPauseButton);
         pauseTimerButton.setOnClickListener(this);
+        pauseTimerButton.setEnabled(false);
 
-        restartTimerButton = root.findViewById(R.id.timerRestartButton);
-        restartTimerButton.setOnClickListener(this);
+        resetTimerButton = root.findViewById(R.id.timerResetButton);
+        resetTimerButton.setOnClickListener(this);
+        resetTimerButton.setEnabled(false);
 
         timerFinishText = root.findViewById(R.id.timerFinishedText);
-        remainingTime = root.findViewById(R.id.timerRemainingTime);
-        swipeResetTimer = root.findViewById(R.id.resetTimerSwipeText);
+        remainingTimeText = root.findViewById(R.id.timerRemainingTimeText);
+        swipeResetTimerText = root.findViewById(R.id.resetTimerSwipeText);
 
         timerFinishAnimation = AnimationUtils.loadAnimation(requireActivity().getApplicationContext(), R.anim.timer_finish_animation);
         defaultRingtone = RingtoneManager.getRingtone(getActivity(), Settings.System.DEFAULT_RINGTONE_URI);
@@ -114,7 +121,6 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
                 return true;
             }
         });
-
         return root;
     }
 
@@ -128,7 +134,9 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
                 countDownTimer = new CountDownTimer(pickedSecond * 1000, 1000) {
                     public void onTick(long millisUntilFinished) {
                         startTimerButton.setEnabled(false);
-                        remainingTime.setText(String.valueOf(pickedSecond));
+                        pauseTimerButton.setEnabled(true);
+                        resetTimerButton.setEnabled(true);
+                        remainingTimeText.setText(String.valueOf(pickedSecond));
                         pickedSecond--;
                     }
 
@@ -136,9 +144,9 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
                         isTimerRunning = false;
                         startTimerButton.setEnabled(false);
                         pauseTimerButton.setEnabled(false);
-                        remainingTime.setVisibility(View.INVISIBLE);
+                        remainingTimeText.setVisibility(View.INVISIBLE);
                         timerFinishText.setVisibility(View.VISIBLE);
-                        swipeResetTimer.setVisibility(View.VISIBLE);
+                        swipeResetTimerText.setVisibility(View.VISIBLE);
                         timerFinishText.startAnimation(timerFinishAnimation);
                         defaultRingtone.play();
                     }
@@ -156,19 +164,19 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
                 else {
                     isTimerRunning = true;
                     pauseTimerButton.setText(R.string.timerPauseButton);
-                    timeLeft = Integer.parseInt(String.valueOf(remainingTime.getText()));
+                    timeLeft = Integer.parseInt(String.valueOf(remainingTimeText.getText()));
 
                     countDownTimer = new CountDownTimer(timeLeft * 1000, 1000) {
                         public void onTick(long millisUntilFinished) {
-                            remainingTime.setText(String.valueOf(timeLeft));
+                            remainingTimeText.setText(String.valueOf(timeLeft));
                             timeLeft--;
                         }
 
                         public void onFinish() {
                             pauseTimerButton.setEnabled(false);
-                            remainingTime.setVisibility(View.INVISIBLE);
+                            remainingTimeText.setVisibility(View.INVISIBLE);
                             timerFinishText.setVisibility(View.VISIBLE);
-                            swipeResetTimer.setVisibility(View.VISIBLE);
+                            swipeResetTimerText.setVisibility(View.VISIBLE);
                             timerFinishText.startAnimation(timerFinishAnimation);
                             defaultRingtone.play();
                         }
@@ -176,7 +184,7 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
                 }
                 break;
 
-            case R.id.timerRestartButton:
+            case R.id.timerResetButton:
                 defaultRingtone.stop();
                 countDownTimer.cancel();
                 getParentFragmentManager().beginTransaction().detach(this).attach(this).commit();

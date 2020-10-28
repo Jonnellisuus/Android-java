@@ -12,5 +12,7 @@
     <color name="guessGameRestartButton">#FA04FA</color>
     <color name="resetHighScoreButton">#E80000</color>
 
+    <color name="timerButtons">#FFF1D4</color>
+
     <color name="searchCompanyButton">#37A14D</color>
 </resources>
