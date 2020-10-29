@@ -137,6 +137,7 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
 
                     if (guessGameHighScore == 0) {
                         guessGameHighScoreText.setText(guessGameScore.getText().toString());
+                        guessGameHighScoreText.setVisibility(View.VISIBLE);
                         saveHighScore();
                     }
                     else if (clickCount < guessGameHighScore) {
@@ -167,6 +168,7 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
 
                     if (guessGameHighScore == 0) {
                         guessGameHighScoreText.setText(guessGameScore.getText().toString());
+                        guessGameHighScoreText.setVisibility(View.VISIBLE);
                         saveHighScore();
                     }
                     else if (clickCount < guessGameHighScore) {
@@ -197,6 +199,7 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
 
                     if (guessGameHighScore == 0) {
                         guessGameHighScoreText.setText(guessGameScore.getText().toString());
+                        guessGameHighScoreText.setVisibility(View.VISIBLE);
                         saveHighScore();
                     }
                     else if (clickCount < guessGameHighScore) {
@@ -227,6 +230,7 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
 
                     if (guessGameHighScore == 0) {
                         guessGameHighScoreText.setText(guessGameScore.getText().toString());
+                        guessGameHighScoreText.setVisibility(View.VISIBLE);
                         saveHighScore();
                     }
                     else if (clickCount < guessGameHighScore) {
