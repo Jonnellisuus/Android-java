@@ -49,6 +49,9 @@
     <string name="textViewCompanyBusinessIDTitle">Company business ID:</string>
     <string name="textViewCompanyFormTitle">Company form:</string>
     <string name="textViewCompanyRegistrationDateTitle">Registration date:</string>
+    <string name="companyNotFoundText">Company not found</string>
+    <string name="returnHomeText">Press the button to return home.</string>
+    <string name="returnHomeButton">Home</string>
 
     <string name="gestureLeftSwipe">You swiped left to guess game</string>
     <string name="gestureRightSwipe">You swiped right to guess game</string>

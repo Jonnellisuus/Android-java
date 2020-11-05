@@ -75,11 +75,6 @@ public class SearchCompanyAdapter extends RecyclerView.Adapter<SearchCompanyAdap
         }
     }
 
-    public void filterList(ArrayList<Company> filteredList) {
-        companyList = filteredList;
-        notifyDataSetChanged();
-    }
-
     @Override
     public Filter getFilter() {
         return filterCompany;

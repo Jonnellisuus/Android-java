@@ -15,16 +15,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".CompanyNotFound"></activity>
+
         <receiver
             android:name=".InternetReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <action android:name = "android.net.conn.CONNECTIVITY_CHANGE" />
-                <action android:name = "android.net.wifi.WIFI_STATE_CHANGED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
             </intent-filter>
         </receiver>
-
         <receiver
             android:name=".ApmReceiver"
             android:enabled="true"
@@ -40,21 +41,15 @@
         <activity
             android:name=".GuessGame"
             android:label="@string/guessGame"
-            android:parentActivityName=".MainActivity">
-
-        </activity>
+            android:parentActivityName=".MainActivity"></activity>
         <activity
             android:name=".SearchCompany"
             android:label="@string/searchCompany"
             android:parentActivityName=".MainActivity"
-            android:windowSoftInputMode="adjustNothing">
-
-        </activity>
+            android:windowSoftInputMode="adjustNothing"></activity>
         <activity
             android:name=".HeroActivity"
-            android:parentActivityName=".MainActivity">
-
-        </activity>
+            android:parentActivityName=".MainActivity"></activity>
     </application>
 
 </manifest>

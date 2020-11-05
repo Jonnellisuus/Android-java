@@ -11,7 +11,6 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,17 +32,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchCompany extends AppCompatActivity {
-    private static final String JSON_URL = "http://avoindata.prh.fi/bis/v1?totalResults=false&maxResults=1000&resultsFrom=0&companyRegistrationFrom=1900-01-01";
+    String JSON_URL = "http://avoindata.prh.fi/bis/v1?totalResults=false&maxResults=1000&resultsFrom=0&companyRegistrationFrom=1900-01-01&name=";
     RecyclerView recyclerView;
     List<Company> companyList;
     SearchCompanyAdapter searchCompanyAdapter;
     ProgressBar progressBar;
-    String getCompany;
-    TextView searchingText;
-    TextView companyNameTitle;
-    TextView companyBusinessIDTitle;
-    TextView companyFormTitle;
-    TextView companyRegistrationDateTitle;
+    String searchWord;
+    TextView searchingText, companyNameTitle, companyBusinessIDTitle, companyFormTitle, companyRegistrationDateTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +57,10 @@ public class SearchCompany extends AppCompatActivity {
         companyRegistrationDateTitle = findViewById(R.id.textViewCompanyRegistrationDateTitle);
 
         Intent intent = getIntent();
-        getCompany = intent.getStringExtra(HomeFragment.getCertainCompany);
-        Log.e("Test", getCompany);
+        searchWord = intent.getStringExtra(HomeFragment.companyKeyword);
+        Log.e("Test", searchWord);
+        JSON_URL = JSON_URL + searchWord;
+        Log.e("URL", JSON_URL);
 
         loadCompanyList();
     }
@@ -115,7 +112,8 @@ public class SearchCompany extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(SearchCompany.this, CompanyNotFound.class);
+                        startActivity(intent);
                     }
                 });
 
