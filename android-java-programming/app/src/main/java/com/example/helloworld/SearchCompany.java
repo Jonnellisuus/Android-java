@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -48,7 +49,7 @@ public class SearchCompany extends AppCompatActivity {
         recyclerView = findViewById(R.id.companyRecyclerView);
         companyList = new ArrayList<>();
 
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.progressBar);
         searchingText = findViewById(R.id.textViewSearching);
 
         companyNameTitle = findViewById(R.id.textViewCompanyNameTitle);
@@ -118,6 +119,7 @@ public class SearchCompany extends AppCompatActivity {
                 });
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(50 * 1000, 1, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(stringRequest);
     }
 
