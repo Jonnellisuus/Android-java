@@ -12,11 +12,8 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +26,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.helloworld.ApmReceiver;
 import com.example.helloworld.InternetReceiver;
 import com.example.helloworld.R;
 import com.google.android.material.textfield.TextInputEditText;
@@ -37,20 +33,15 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 
 public class DashboardFragment extends Fragment implements LocationListener {
 
     private DashboardViewModel dashboardViewModel;
 
-    TextInputEditText locationLatitude;
-    TextInputEditText locationLongitude;
-    TextInputEditText locationAddress;
-
+    TextInputEditText locationLatitude, locationLongitude, locationAddress;
     Button showLocationOnMap;
 
-    double latitude;
-    double longitude;
+    double latitude, longitude;
 
     LocationManager locationManager;
     Location lastLocation;
@@ -95,15 +86,6 @@ public class DashboardFragment extends Fragment implements LocationListener {
                     String uri = String.format(Locale.ENGLISH, "http://maps.google.com/maps?q=loc:%f,%f", latitude, longitude);
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
                     startActivity(intent);
-
-                    /*
-                    Uri intentUri = Uri.parse(String.valueOf(lastLocation));
-                    Intent locationIntent = new Intent(Intent.ACTION_VIEW, intentUri);
-                    locationIntent.setPackage("com.google.android.apps.maps");
-                    if (locationIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-                        startActivity(locationIntent);
-                    }
-                     */
                 }
             }
         });
@@ -123,8 +105,8 @@ public class DashboardFragment extends Fragment implements LocationListener {
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onDestroy() {
+        super.onDestroy();
         this.requireActivity().unregisterReceiver(internetReceiver);
     }
 
