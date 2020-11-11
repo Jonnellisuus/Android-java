@@ -153,11 +153,11 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/guessGameScoreText"
+        android:id="@+id/guessGameScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="200dp"
-        android:layout_marginTop="447dp"
+        android:layout_marginTop="448dp"
         android:text="@string/guessGameScore"
         android:textColor="@android:color/black"
         android:textSize="20sp"
@@ -166,7 +166,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/guessGameCurrentTries"
+        android:id="@+id/guessGameCalculateClicks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -192,18 +192,19 @@
 
     <TextView
         android:id="@+id/guessGameHighScore"
-        android:layout_width="17dp"
-        android:layout_height="39dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="150dp"
-        android:layout_marginTop="490dp"
-        android:gravity="center_horizontal"
+        android:layout_marginTop="491dp"
+        android:text="@string/guessGameScore"
         android:textColor="@android:color/black"
         android:textSize="20sp"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/guessGameHighScoreText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="41dp"

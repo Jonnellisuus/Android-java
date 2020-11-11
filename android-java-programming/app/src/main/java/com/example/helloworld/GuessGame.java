@@ -24,12 +24,11 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
     CardView firstCard, secondCard, thirdCard, fourthCard;
     Animation inCorrectChoice;
     Button restartButton, resetHighScoreButton;
-    TextView guessGameScore, guessGameCurrentTries, guessGameHighScoreText;
+    TextView guessGameScore, guessGameCalculateClicks, guessGameHighScore, guessGameTotalTriesText, guessGameHighScoreText;
     ImageView firstDiamondImage, secondDiamondImage, thirdDiamondImage, fourthDiamondImage;
 
-    int randomNumber;
+    int randomNumber, highScore;
     int clickCount = 0;
-    int guessGameHighScore;
 
     public static final String SHARED_PREFS = "sharedPrefs";
 
@@ -59,20 +58,22 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
         resetHighScoreButton = findViewById(R.id.resetHighScore);
         resetHighScoreButton.setOnClickListener(this);
 
-        guessGameScore = findViewById(R.id.guessGameScoreText);
-        guessGameCurrentTries = findViewById(R.id.guessGameCurrentTries);
-        guessGameHighScoreText = findViewById(R.id.guessGameHighScore);
+        guessGameScore = findViewById(R.id.guessGameScore);
+        guessGameCalculateClicks = findViewById(R.id.guessGameCalculateClicks);
+        guessGameHighScore = findViewById(R.id.guessGameHighScore);
+        guessGameTotalTriesText = findViewById(R.id.guessGameTotalTriesText);
+        guessGameHighScoreText = findViewById(R.id.guessGameHighScoreText);
 
         inCorrectChoice = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.guess_game_incorrect_answer);
 
         loadHighScore();
         updateHighScore();
 
-        if (guessGameHighScore == 0) {
-            guessGameHighScoreText.setVisibility(View.GONE);
+        if (highScore == 0) {
+            guessGameHighScore.setVisibility(View.GONE);
         }
         else {
-            guessGameHighScoreText.setVisibility(View.VISIBLE);
+            guessGameHighScore.setVisibility(View.VISIBLE);
         }
     }
 
@@ -88,14 +89,14 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
     }
 
     public void writeScoreToFile() {
-        String textToSave = guessGameCurrentTries.getText().toString();
+        String textToSave = guessGameCalculateClicks.getText().toString();
 
         try {
             FileOutputStream fileOutputStream = openFileOutput("saved_score.txt", MODE_PRIVATE);
             fileOutputStream.write(textToSave.getBytes());
             fileOutputStream.close();
 
-            guessGameCurrentTries.setText("");
+            guessGameCalculateClicks.setText("");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -130,18 +131,18 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
                     guessGameScore.setVisibility(View.VISIBLE);
 
                     clickCount = clickCount+1;
-                    guessGameCurrentTries.setText(String.valueOf(clickCount));
+                    guessGameCalculateClicks.setText(String.valueOf(clickCount));
 
                     writeScoreToFile();
                     readScoreFromFile();
 
-                    if (guessGameHighScore == 0) {
-                        guessGameHighScoreText.setText(guessGameScore.getText().toString());
-                        guessGameHighScoreText.setVisibility(View.VISIBLE);
+                    if (highScore == 0) {
+                        guessGameHighScore.setText(guessGameScore.getText().toString());
+                        guessGameHighScore.setVisibility(View.VISIBLE);
                         saveHighScore();
                     }
-                    else if (clickCount < guessGameHighScore) {
-                        guessGameHighScoreText.setText(guessGameScore.getText().toString());
+                    else if (clickCount < highScore) {
+                        guessGameHighScore.setText(guessGameScore.getText().toString());
                         saveHighScore();
                     }
                 }
@@ -149,7 +150,7 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
                 else {
                     firstCard.startAnimation(inCorrectChoice);
                     clickCount = clickCount+1;
-                    guessGameCurrentTries.setText(String.valueOf(clickCount));
+                    guessGameCalculateClicks.setText(String.valueOf(clickCount));
                     writeScoreToFile();
                 }
                 break;
@@ -161,18 +162,18 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
                     guessGameScore.setVisibility(View.VISIBLE);
 
                     clickCount = clickCount+1;
-                    guessGameCurrentTries.setText(String.valueOf(clickCount));
+                    guessGameCalculateClicks.setText(String.valueOf(clickCount));
 
                     writeScoreToFile();
                     readScoreFromFile();
 
-                    if (guessGameHighScore == 0) {
-                        guessGameHighScoreText.setText(guessGameScore.getText().toString());
-                        guessGameHighScoreText.setVisibility(View.VISIBLE);
+                    if (highScore == 0) {
+                        guessGameHighScore.setText(guessGameScore.getText().toString());
+                        guessGameHighScore.setVisibility(View.VISIBLE);
                         saveHighScore();
                     }
-                    else if (clickCount < guessGameHighScore) {
-                        guessGameHighScoreText.setText(guessGameScore.getText().toString());
+                    else if (clickCount < highScore) {
+                        guessGameHighScore.setText(guessGameScore.getText().toString());
                         saveHighScore();
                     }
                 }
@@ -180,7 +181,7 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
                 else {
                     secondCard.startAnimation(inCorrectChoice);
                     clickCount = clickCount+1;
-                    guessGameCurrentTries.setText(String.valueOf(clickCount));
+                    guessGameCalculateClicks.setText(String.valueOf(clickCount));
                     writeScoreToFile();
                 }
                 break;
@@ -192,18 +193,18 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
                     guessGameScore.setVisibility(View.VISIBLE);
 
                     clickCount = clickCount+1;
-                    guessGameCurrentTries.setText(String.valueOf(clickCount));
+                    guessGameCalculateClicks.setText(String.valueOf(clickCount));
 
                     writeScoreToFile();
                     readScoreFromFile();
 
-                    if (guessGameHighScore == 0) {
-                        guessGameHighScoreText.setText(guessGameScore.getText().toString());
-                        guessGameHighScoreText.setVisibility(View.VISIBLE);
+                    if (highScore == 0) {
+                        guessGameHighScore.setText(guessGameScore.getText().toString());
+                        guessGameHighScore.setVisibility(View.VISIBLE);
                         saveHighScore();
                     }
-                    else if (clickCount < guessGameHighScore) {
-                        guessGameHighScoreText.setText(guessGameScore.getText().toString());
+                    else if (clickCount < highScore) {
+                        guessGameHighScore.setText(guessGameScore.getText().toString());
                         saveHighScore();
                     }
                 }
@@ -211,7 +212,7 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
                 else {
                     thirdCard.startAnimation(inCorrectChoice);
                     clickCount = clickCount+1;
-                    guessGameCurrentTries.setText(String.valueOf(clickCount));
+                    guessGameCalculateClicks.setText(String.valueOf(clickCount));
                     writeScoreToFile();
                 }
                 break;
@@ -223,18 +224,18 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
                     guessGameScore.setVisibility(View.VISIBLE);
 
                     clickCount = clickCount+1;
-                    guessGameCurrentTries.setText(String.valueOf(clickCount));
+                    guessGameCalculateClicks.setText(String.valueOf(clickCount));
 
                     writeScoreToFile();
                     readScoreFromFile();
 
-                    if (guessGameHighScore == 0) {
-                        guessGameHighScoreText.setText(guessGameScore.getText().toString());
-                        guessGameHighScoreText.setVisibility(View.VISIBLE);
+                    if (highScore == 0) {
+                        guessGameHighScore.setText(guessGameScore.getText().toString());
+                        guessGameHighScore.setVisibility(View.VISIBLE);
                         saveHighScore();
                     }
-                    else if (clickCount < guessGameHighScore) {
-                        guessGameHighScoreText.setText(guessGameScore.getText().toString());
+                    else if (clickCount < highScore) {
+                        guessGameHighScore.setText(guessGameScore.getText().toString());
                         saveHighScore();
                     }
                 }
@@ -242,7 +243,7 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
                 else {
                     fourthCard.startAnimation(inCorrectChoice);
                     clickCount = clickCount+1;
-                    guessGameCurrentTries.setText(String.valueOf(clickCount));
+                    guessGameCalculateClicks.setText(String.valueOf(clickCount));
                     writeScoreToFile();
                 }
                 break;
@@ -270,15 +271,15 @@ public class GuessGame extends AppCompatActivity implements View.OnClickListener
     public void saveHighScore() {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        int saveHighScore = Integer.parseInt(guessGameHighScoreText.getText().toString().trim());
+        int saveHighScore = Integer.parseInt(guessGameHighScore.getText().toString().trim());
         editor.putInt("HighScore", saveHighScore);
         editor.apply();
     }
     public void loadHighScore() {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        guessGameHighScore = sharedPreferences.getInt("HighScore", 0);
+        highScore = sharedPreferences.getInt("HighScore", 0);
     }
     public void updateHighScore() {
-        guessGameHighScoreText.setText(String.valueOf(guessGameHighScore));
+        guessGameHighScore.setText(String.valueOf(highScore));
     }
 }
