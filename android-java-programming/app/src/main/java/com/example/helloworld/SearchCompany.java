@@ -33,7 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchCompany extends AppCompatActivity {
-    String JSON_URL = "http://avoindata.prh.fi/bis/v1?totalResults=false&maxResults=1000&resultsFrom=0&companyRegistrationFrom=1900-01-01&name=";
+    String JSON_URL = "http://avoindata.prh.fi/bis/v1?totalResults=false&maxResults=1000&resultsFrom=0&companyRegistrationFrom=1960-01-01&name=";
     RecyclerView recyclerView;
     List<Company> companyList;
     SearchCompanyAdapter searchCompanyAdapter;
@@ -119,7 +119,7 @@ public class SearchCompany extends AppCompatActivity {
                 });
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        stringRequest.setRetryPolicy(new DefaultRetryPolicy(50 * 1000, 1, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(30 * 1000, 1, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(stringRequest);
     }
 
