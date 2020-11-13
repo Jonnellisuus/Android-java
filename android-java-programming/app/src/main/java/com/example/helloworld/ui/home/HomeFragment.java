@@ -31,6 +31,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     float firstCoordinateX, secondCoordinateX;
     int coordinateDistance = 100;
+    // boolean buttonClick = true;
 
     EditText editText;
     String searchWord;
@@ -112,6 +113,23 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             case R.id.textButton:
                 Log.e("errorMSG", "Button has been clicked.");
 
+                // Calling the function which will set "Hello" text visible and invisible.
+                helloTextView();
+
+                /*
+                The code below would also set "Hello" text visible or invisible
+                when button has been clicked. Remove code from the comment at the line 34.
+
+                if (buttonClick == true) {
+                    helloText.setVisibility(View.GONE);
+                    buttonClick = false;
+                }
+                else {
+                    helloText.setVisibility(View.VISIBLE);
+                    buttonClick = true;
+                }
+                 */
+
                 /*
                 The code below would also set "Hello" text visible or invisible
                 when button has been clicked.
@@ -124,7 +142,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 }
                 */
 
-                helloTextView();
                 break;
 
             case R.id.guessGameButton:
