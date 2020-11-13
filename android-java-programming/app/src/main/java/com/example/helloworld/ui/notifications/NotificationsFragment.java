@@ -29,21 +29,14 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
     NumberPicker pickedNumber;
     private String[] timerSeconds;
 
-    Button startTimerButton;
-    Button pauseTimerButton;
-    Button resetTimerButton;
-
-    TextView remainingTimeText;
-    TextView timerFinishText;
-    TextView swipeResetTimerText;
+    Button startTimerButton, pauseTimerButton, resetTimerButton;
+    TextView remainingTimeText, timerFinishText, swipeResetTimerText;
 
     int minValue = 0;
     int maxValue = 60;
-    int i;
-    int timeLeft;
-    int pickedSecond;
-    float firstCoordinateX, secondCoordinateX;
     int coordinateDistance = 100;
+    int i, timeLeft, pickedSecond;
+    float firstCoordinateX, secondCoordinateX;
     boolean isTimerRunning;
 
     CountDownTimer countDownTimer;

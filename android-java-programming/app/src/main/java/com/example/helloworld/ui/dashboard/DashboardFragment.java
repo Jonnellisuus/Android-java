@@ -82,7 +82,6 @@ public class DashboardFragment extends Fragment implements LocationListener {
             @Override
             public void onClick(View view) {
                 if (lastLocation != null) {
-
                     String uri = String.format(Locale.ENGLISH, "http://maps.google.com/maps?q=loc:%f,%f", latitude, longitude);
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
                     startActivity(intent);
