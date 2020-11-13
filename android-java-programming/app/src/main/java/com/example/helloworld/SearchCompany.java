@@ -37,6 +37,7 @@ public class SearchCompany extends AppCompatActivity {
     RecyclerView recyclerView;
     List<Company> companyList;
     SearchCompanyAdapter searchCompanyAdapter;
+    RequestQueue requestQueue;
     ProgressBar progressBar;
     String searchWord;
     TextView searchingText, companyNameTitle, companyBusinessIDTitle, companyFormTitle, companyRegistrationDateTitle;
@@ -59,9 +60,7 @@ public class SearchCompany extends AppCompatActivity {
 
         Intent intent = getIntent();
         searchWord = intent.getStringExtra(HomeFragment.companyKeyword);
-        Log.e("Test", searchWord);
         JSON_URL = JSON_URL + searchWord;
-        Log.e("URL", JSON_URL);
 
         loadCompanyList();
     }
@@ -118,7 +117,7 @@ public class SearchCompany extends AppCompatActivity {
                     }
                 });
 
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue = Volley.newRequestQueue(this);
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(30 * 1000, 1, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(stringRequest);
     }
