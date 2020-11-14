@@ -151,10 +151,6 @@ public class DashboardFragment extends Fragment implements LocationListener {
                     Toast toast = Toast.makeText(getContext(), "Permission granted", Toast.LENGTH_SHORT);
                     toast.show();
                 }
-                else {
-                    Toast toast = Toast.makeText(getContext(), "Permission denied", Toast.LENGTH_SHORT);
-                    toast.show();
-                }
                 break;
         }
     }
