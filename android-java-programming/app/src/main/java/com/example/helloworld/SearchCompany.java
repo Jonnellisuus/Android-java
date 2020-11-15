@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchCompany extends AppCompatActivity {
-    String JSON_URL = "http://avoindata.prh.fi/bis/v1?totalResults=false&maxResults=1000&resultsFrom=0&companyRegistrationFrom=1960-01-01&name=";
+    String JSON_URL = "http://avoindata.prh.fi/bis/v1?totalResults=false&maxResults=100&resultsFrom=0&companyRegistrationFrom=1960-01-01&name=";
     String companyURL;
     RecyclerView recyclerView;
     List<Company> companyList;
