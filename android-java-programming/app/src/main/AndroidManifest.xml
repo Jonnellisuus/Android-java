@@ -47,9 +47,6 @@
             android:label="@string/searchCompany"
             android:parentActivityName=".MainActivity"
             android:windowSoftInputMode="adjustNothing"></activity>
-        <activity
-            android:name=".HeroActivity"
-            android:parentActivityName=".MainActivity"></activity>
     </application>
 
 </manifest>
