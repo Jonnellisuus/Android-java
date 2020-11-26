@@ -42,6 +42,7 @@
     <string name="textViewCompanyRegistrationDateTitle">Rekisteröintipäivä:</string>
     <string name="companyNotFoundText">Yritystä ei löytynyt</string>
     <string name="returnHomeText">Paina napista palataksesi takaisin.</string>
+    <string name="tipTextView">Kokeile lisätä yhtiömuoto. Esimerkiksi Kone Oy.</string>
     <string name="returnHomeButton">Takaisin</string>
 
     <string name="gestureLeftSwipe">Pyyhkäisit vasemmalle arvauspeliin</string>

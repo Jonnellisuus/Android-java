@@ -16,16 +16,32 @@ public class Company {
         return companyName;
     }
 
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
     public String getBusinessID() {
         return businessID;
+    }
+
+    public void setBusinessID(String businessID) {
+        this.businessID = businessID;
     }
 
     public String getCompanyForm() {
         return companyForm;
     }
 
+    public void setCompanyForm(String companyForm) {
+        this.companyForm = companyForm;
+    }
+
     public String getRegistrationDate() {
         return registrationDate;
+    }
+
+    public void setRegistrationDate(String registrationDate) {
+        this.registrationDate = registrationDate;
     }
 
     public boolean isExpandableCompanyList() {

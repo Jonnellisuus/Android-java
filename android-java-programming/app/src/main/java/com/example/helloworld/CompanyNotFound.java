@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.example.helloworld.ui.home.HomeFragment;
 
 public class CompanyNotFound extends AppCompatActivity {
-    TextView companyNotFoundText, returnHomeText;
+    TextView companyNotFoundText, tipText, returnHomeText;
     Button returnHomeButton;
 
     @Override
@@ -21,6 +21,7 @@ public class CompanyNotFound extends AppCompatActivity {
         setContentView(R.layout.activity_company_not_found);
 
         companyNotFoundText = findViewById(R.id.companyNotFoundTextView);
+        tipText = findViewById(R.id.tipTextView);
         returnHomeText = findViewById(R.id.returnHomeTextView);
 
         returnHomeButton = findViewById(R.id.returnHomeButton);
