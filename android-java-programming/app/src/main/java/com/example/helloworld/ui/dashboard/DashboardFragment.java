@@ -33,6 +33,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public class DashboardFragment extends Fragment implements LocationListener {
 
@@ -72,7 +73,7 @@ public class DashboardFragment extends Fragment implements LocationListener {
         locationAddress = root.findViewById(R.id.locationAddress);
         locationAddress.setEnabled(false);
 
-        locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        locationManager = (LocationManager) requireActivity().getSystemService(Context.LOCATION_SERVICE);
 
         startLocationUpdate();
         broadcastIntent();
@@ -114,9 +115,9 @@ public class DashboardFragment extends Fragment implements LocationListener {
     }
 
     public void startLocationUpdate() {
-        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(getContext(),
+                && ActivityCompat.checkSelfPermission(requireContext(),
                 Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -143,7 +144,7 @@ public class DashboardFragment extends Fragment implements LocationListener {
     }
 
     @Override
-    public void onRequestPermissionsResult(int permsRequestCode, String[] permission, int[] grantResults) {
+    public void onRequestPermissionsResult(int permsRequestCode, @NonNull String[] permission, @NonNull int[] grantResults) {
         Log.e(TAG, "permsRequestCode = " + permsRequestCode);
         switch (permsRequestCode) {
             case MY_PERMISSION_REQUEST_FINE_LOCATION:

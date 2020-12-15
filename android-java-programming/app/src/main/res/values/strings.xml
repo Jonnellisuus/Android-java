@@ -4,8 +4,6 @@
     <string name="appText">Hello</string>
     <string name="guessGame">Guess game</string>
 
-    <string name="buttonToFindCat">Find a cat</string>
-
     <string name="guessGameTitle">Guess where the diamond is</string>
     <string name="guessGameScore" translatable="false">0</string>
     <string name="guessGameCurrentTries" translatable="false">0</string>
@@ -14,7 +12,6 @@
     <string name="guessGameResetHighScoreButton">Reset highscore</string>
     <string name="guessGameHighScoreText">Highscore:</string>
 
-    <string name="title_activity_main" translatable="false">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_location">Location</string>
     <string name="title_timer">Timer</string>
@@ -25,7 +22,8 @@
     <string name="locationLongitudeHint">Longitude</string>
     <string name="locationAddressHint">Address</string>
 
-    <string name="location" translatable="false"> </string>
+    <string name="locationPermissionGranted">Permission granted</string>
+    <string name="locationPermissionDenied">Permission denied</string>
 
     <string name="airplaneModeOn">Airplane mode on</string>
     <string name="airplaneModeOff">Airplane mode off</string>
@@ -37,7 +35,6 @@
     <string name="timerPauseButton" translatable="false">Pause</string>
     <string name="timerPlayButton" translatable="false">Play</string>
     <string name="timerResetButton" translatable="false">Reset</string>
-    <string name="timerResetTime" translatable="false"> </string>
     <string name="timerFinishText">Time is out</string>
 
     <string name="searchCompany">Search company</string>
@@ -57,5 +54,8 @@
     <string name="gestureLeftSwipe">You swiped left to guess game</string>
     <string name="gestureRightSwipe">You swiped right to guess game</string>
     <string name="swipeResetTimer">Swipe to left or right to reset the timer</string>
+
+    <string name="guessGameContentDescription">Guess game diamond</string>
+    <string name="homeCatImageContentDescription">Home cat Image</string>
 
 </resources>

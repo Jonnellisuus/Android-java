@@ -42,6 +42,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             ViewGroup container, Bundle savedInstanceState) {
 
         Log.i(TAG, "This message will appear when the emulator has been started.");
+        Log.e(TAG, "This message will also appear and this is how an error message will look like.");
 
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
@@ -154,7 +155,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 Intent intent = new Intent(getActivity(), SearchCompany.class);
                 intent.putExtra(companyKeyword, searchWord);
                 startActivity(intent);
-                break;
         }
     }
 }
