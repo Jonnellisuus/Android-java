@@ -50,21 +50,6 @@
     <string name="gestureRightSwipe">Pyyhkäisit oikealle arvauspeliin</string>
     <string name="swipeResetTimer">Pyyhkäise sivulle nollataksesi ajastimen</string>
 
-    <string name="quizTitle">Quiz</string>
-    <string name="quizButtonHome">Visa</string>
-    <string name="quizActivityTitle">Tietovisa</string>
-    <string name="quizActivityWelcome">Tervetuloa</string>
-    <string name="quizNameInputField">Syötä nimesi tai käyttäjänimesi</string>
-    <string name="quizStartButton">Aloita</string>
-    <string name="quizHeyText">Hei</string>
-    <string name="quizQuestion">Mikä amk tämä on?</string>
-    <string name="quizXAMKButton">XAMK</string>
-    <string name="quizLaureButton">LAUREA</string>
-    <string name="quizLABButton">LAB</string>
-    <string name="quizJAMKButton">JAMK</string>
-    <string name="quizTAMKButton">TAMK</string>
-    <string name="quizCorrectText">Oikein</string>
-
     <string name="guessGameContentDescription">Guess game diamond</string>
     <string name="homeCatImageContentDescription">Home cat Image</string>
 

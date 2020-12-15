@@ -33,7 +33,6 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 
 public class DashboardFragment extends Fragment implements LocationListener {
 
