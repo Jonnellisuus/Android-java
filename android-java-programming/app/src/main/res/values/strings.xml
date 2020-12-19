@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">Hello World</string>
-    <string name="testButton">Click here</string>
+    <string name="app_name">Kiukas</string>
+    <string name="testButton">Press here</string>
     <string name="appText">Hello</string>
     <string name="guessGame">Guess game</string>
 
@@ -57,5 +57,7 @@
 
     <string name="guessGameContentDescription">Guess game diamond</string>
     <string name="homeCatImageContentDescription">Home cat Image</string>
+
+    <string name="appCreatedText">Application created by Jonne Kiukas</string>
 
 </resources>

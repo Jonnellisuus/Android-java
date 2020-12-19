@@ -8,64 +8,59 @@
 
     <ImageView
         android:id="@+id/imageCat"
-        android:layout_width="fill_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="0dp"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="110dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="420dp"
+        android:contentDescription="@string/homeCatImageContentDescription"
         android:scaleType="fitXY"
         android:src="@drawable/kissa"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/homeCatImageContentDescription" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/helloTextID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="90dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="296dp"
+        android:layout_marginEnd="160dp"
+        android:layout_marginBottom="410dp"
         android:text="@string/appText"
         android:textColor="@android:color/black"
         android:textSize="38sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.304" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/textButton"
         android:layout_width="170dp"
         android:layout_height="100dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="250dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="335dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginBottom="306dp"
         android:text="@string/testButton"
         android:textColor="@android:color/white"
         android:textSize="20sp"
         app:backgroundTint="@color/clickHereButtonColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.552" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/guessGameButton"
         android:layout_width="170dp"
         android:layout_height="100dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="120dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="435dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginBottom="206dp"
         android:onClick="onClick"
         android:text="@string/guessGame"
         android:textColor="@android:color/white"
@@ -73,30 +68,52 @@
         app:backgroundTint="@color/guessGameButtonColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textButton"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextSearchCompany"
         android:layout_width="248dp"
         android:layout_height="51dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="533dp"
+        android:layout_marginEnd="153dp"
+        android:layout_marginBottom="147dp"
         android:hint="@string/searchCompanyHint"
         android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guessGameButton" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/searchCompanyButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="270dp"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="533dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="150dp"
         android:text="@string/searchCompanyButton"
         app:backgroundTint="@color/searchCompanyButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guessGameButton" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/appCreatedText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="173dp"
+        android:layout_marginTop="165dp"
+        android:layout_marginEnd="180dp"
+        android:layout_marginBottom="685dp"
+        android:text="@string/appCreatedText"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Hei maailma</string>
-    <string name="testButton">Klikkaa tästä</string>
+    <string name="app_name">Kiukas</string>
+    <string name="testButton">Paina tästä</string>
     <string name="appText">Hei</string>
     <string name="guessGame">Arvauspeli</string>
 
@@ -52,5 +52,7 @@
 
     <string name="guessGameContentDescription">Guess game diamond</string>
     <string name="homeCatImageContentDescription">Home cat Image</string>
+
+    <string name="appCreatedText">Sovelluksen on kehittänyt Jonne Kiukas</string>
 
 </resources>

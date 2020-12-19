@@ -27,7 +27,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public static final String TAG = "HelloWorldMessage";
 
     Button button, guessGameButton, searchCompanyButton;
-    TextView helloText;
+    TextView helloText, appCreatedText;
 
     float firstCoordinateX, secondCoordinateX;
     int coordinateDistance = 100;
@@ -49,6 +49,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         helloText = root.findViewById(R.id.helloTextID);
+        appCreatedText = root.findViewById(R.id.appCreatedText);
 
         button = root.findViewById(R.id.textButton);
         button.setOnClickListener(this);
