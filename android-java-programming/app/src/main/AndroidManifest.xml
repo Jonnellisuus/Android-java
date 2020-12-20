@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.helloworld">
+    package="com.jonne.kiukas">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -18,7 +18,7 @@
         android:fullBackupContent="@xml/backup_descriptor">
 
         <receiver
-            android:name=".InternetReceiver"
+            android:name="com.jonne.kiukas.InternetReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
@@ -27,11 +27,11 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name=".ApmReceiver"
+            android:name="com.jonne.kiukas.ApmReceiver"
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name="com.jonne.kiukas.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,18 +39,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".GuessGame"
+            android:name="com.jonne.kiukas.GuessGame"
             android:label="@string/guessGame"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName="com.jonne.kiukas.MainActivity" />
         <activity
-            android:name=".SearchCompany"
+            android:name="com.jonne.kiukas.SearchCompany"
             android:label="@string/searchCompany"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName="com.jonne.kiukas.MainActivity"
             android:windowSoftInputMode="adjustNothing" />
 
         <activity
-            android:name=".CompanyNotFound"
+            android:name="com.jonne.kiukas.CompanyNotFound"
             android:label="@string/searchCompany"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName="com.jonne.kiukas.MainActivity"/>
     </application>
 </manifest>

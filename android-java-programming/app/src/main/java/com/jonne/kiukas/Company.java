@@ -1,4 +1,4 @@
-package com.example.helloworld;
+package com.jonne.kiukas;
 
 public class Company {
     String companyName, businessID, companyForm, registrationDate;

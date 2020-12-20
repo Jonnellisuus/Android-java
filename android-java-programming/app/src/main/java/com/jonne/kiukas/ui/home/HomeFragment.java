@@ -1,4 +1,4 @@
-package com.example.helloworld.ui.home;
+package com.jonne.kiukas.ui.home;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,9 +16,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.helloworld.GuessGame;
-import com.example.helloworld.R;
-import com.example.helloworld.SearchCompany;
+import com.jonne.kiukas.GuessGame;
+import com.jonne.kiukas.R;
+import com.jonne.kiukas.SearchCompany;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
 

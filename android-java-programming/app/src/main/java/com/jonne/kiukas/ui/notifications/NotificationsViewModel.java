@@ -1,4 +1,4 @@
-package com.example.helloworld.ui.notifications;
+package com.jonne.kiukas.ui.notifications;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

@@ -1,4 +1,4 @@
-package com.example.helloworld.ui.dashboard;
+package com.jonne.kiukas.ui.dashboard;
 
 import android.Manifest;
 import android.content.BroadcastReceiver;
@@ -26,8 +26,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.helloworld.InternetReceiver;
-import com.example.helloworld.R;
+import com.jonne.kiukas.InternetReceiver;
+import com.jonne.kiukas.R;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package com.example.helloworld.ui.notifications;
+package com.jonne.kiukas.ui.notifications;
 
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -20,7 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.helloworld.R;
+import com.jonne.kiukas.R;
 
 public class NotificationsFragment extends Fragment implements View.OnClickListener {
 

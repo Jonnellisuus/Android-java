@@ -1,4 +1,4 @@
-package com.example.helloworld;
+package com.jonne.kiukas;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.helloworld.ui.home.HomeFragment;
+import com.jonne.kiukas.ui.home.HomeFragment;
 
 public class CompanyNotFound extends AppCompatActivity {
     TextView companyNotFoundText, tipText, returnHomeText;
