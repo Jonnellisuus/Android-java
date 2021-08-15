@@ -1,8 +1,17 @@
 <resources>
     <string name="app_name">Kiukas</string>
-    <string name="testButton">Press here</string>
-    <string name="appText">Hello</string>
+    <string name="infoButton">Info</string>
     <string name="guessGame">Guess game</string>
+
+    <string name="info">Info</string>
+    <string name="firstInfoText">This application has been created by Jonne Kiukas. The application
+        contains different kinds of functionalities for example a simple guess game, a company
+        search, a timer and a function which tells user\'s location.</string>
+
+    <string name="secondInfoText">The Company search functionality gets the data from YTJ\'s open
+        interface service. Only Finnish Ltd. companies can be searched. The user must allow the
+        application to use user\'s location. If this is rejected location will not be displayed.
+        User\'s location will not be used or shared with anyone.</string>
 
     <string name="guessGameTitle">Guess where the diamond is</string>
     <string name="guessGameScore" translatable="false">0</string>

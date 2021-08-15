@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Kiukas</string>
-    <string name="testButton">Paina tästä</string>
-    <string name="appText">Hei</string>
+    <string name="infoButton">Info</string>
     <string name="guessGame">Arvauspeli</string>
+
+    <string name="info">Info</string>
+    <string name="firstInfoText">Tämän sovelluksen on kehittänyt Jonne Kiukas. Sovellus sisältää
+    erilaisia ominaisuuksia, kuten yksinkertaisen arvauspelin, yrityshaun, ajastimen ja ominaisuuden,
+    joka kertoo käyttäjän sijainnin.</string>
+    <string name="secondInfoText">Yrityshaun toiminta perustuu YTJ:n avoimeen
+    rajapintaan, josta saadaan tietoa suomalaisista osakeyhtiöistä. Jotta sijainti voidaan
+    näyttää sovelluksessa, käyttäjän täytyy antaa sovellukselle lupa käyttää hänen sijaintiaan.
+    Jos lupaa ei myönnetä, sijaintia ei näytetä. Käyttäjän sijaintia ei jaeta ulkopuolisille.</string>
 
     <string name="guessGameTitle">Arvaa missä timantti on</string>
     <string name="guessGameTotalTriesText">Sinä jouduit yrittämään näin monta kertaa, kunnes löysit timantin:</string>

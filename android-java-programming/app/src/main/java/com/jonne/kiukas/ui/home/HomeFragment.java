@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.jonne.kiukas.AppInfo;
 import com.jonne.kiukas.GuessGame;
 import com.jonne.kiukas.R;
 import com.jonne.kiukas.SearchCompany;
@@ -27,7 +28,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public static final String TAG = "HelloWorldMessage";
 
     Button button, guessGameButton, searchCompanyButton;
-    TextView helloText, appCreatedText;
+    // TextView helloText, appCreatedText;
 
     float firstCoordinateX, secondCoordinateX;
     int coordinateDistance = 100;
@@ -48,10 +49,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 new ViewModelProvider(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        helloText = root.findViewById(R.id.helloTextID);
-        appCreatedText = root.findViewById(R.id.appCreatedText);
+        // helloText = root.findViewById(R.id.helloTextID);
+        // appCreatedText = root.findViewById(R.id.appCreatedText);
 
-        button = root.findViewById(R.id.textButton);
+        button = root.findViewById(R.id.infoButton);
         button.setOnClickListener(this);
 
         guessGameButton = root.findViewById(R.id.guessGameButton);
@@ -105,20 +106,23 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         return root;
     }
 
+    /*
     public void helloTextView() {
         helloText.setVisibility(helloText.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
     }
+     */
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            /*
             case R.id.textButton:
                 Log.e("errorMSG", "Button has been clicked.");
 
                 // Calling the function which will set "Hello" text visible and invisible.
                 helloTextView();
 
-                /*
+
                 The code below would also set "Hello" text visible or invisible
                 when button has been clicked. Remove code from the comment at the line 34.
 
@@ -142,8 +146,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 else {
                     helloText.setText("");
                 }
-                */
 
+                break;
+                 */
+
+            case R.id.infoButton:
+                startActivity(new Intent(getActivity(), AppInfo.class));
                 break;
 
             case R.id.guessGameButton:

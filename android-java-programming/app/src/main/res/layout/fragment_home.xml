@@ -6,20 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <ImageView
-        android:id="@+id/imageCat"
-        android:layout_width="200dp"
-        android:layout_height="150dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="110dp"
-        android:layout_marginEnd="10dp"
-        android:contentDescription="@string/homeCatImageContentDescription"
-        android:scaleType="fitXY"
-        android:src="@drawable/kissa"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+    <!--
     <TextView
         android:id="@+id/helloTextID"
         android:layout_width="90dp"
@@ -52,15 +39,34 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+        -->
+
+    <Button
+        android:id="@+id/infoButton"
+        android:layout_width="170dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="173dp"
+        android:layout_marginTop="65dp"
+        android:layout_marginEnd="180dp"
+        android:layout_marginBottom="485dp"
+        android:onClick="onClick"
+        android:text="@string/infoButton"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        app:backgroundTint="@color/appInfoButtonColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/guessGameButton"
         android:layout_width="170dp"
         android:layout_height="100dp"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="435dp"
-        android:layout_marginEnd="120dp"
-        android:layout_marginBottom="206dp"
+        android:layout_marginStart="117dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="124dp"
+        android:layout_marginBottom="275dp"
         android:onClick="onClick"
         android:text="@string/guessGame"
         android:textColor="@android:color/white"
@@ -76,7 +82,7 @@
         android:layout_width="248dp"
         android:layout_height="51dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="533dp"
+        android:layout_marginTop="233dp"
         android:layout_marginEnd="153dp"
         android:layout_marginBottom="147dp"
         android:hint="@string/searchCompanyHint"
@@ -91,7 +97,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="270dp"
-        android:layout_marginTop="533dp"
+        android:layout_marginTop="233dp"
         android:layout_marginEnd="48dp"
         android:layout_marginBottom="150dp"
         android:text="@string/searchCompanyButton"
@@ -101,19 +107,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/appCreatedText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="173dp"
-        android:layout_marginTop="165dp"
-        android:layout_marginEnd="180dp"
-        android:layout_marginBottom="685dp"
-        android:text="@string/appCreatedText"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
